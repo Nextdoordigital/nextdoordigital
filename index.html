@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextDoor Digital | Modern Websites &amp; Local Presence</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            obsidian: '#06070b',
+            indigoGlow: '#6366f1',
+          },
+          animation: {
+            'float-slow': 'float 14s ease-in-out infinite',
+            'float-reverse': 'floatReverse 18s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 8s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translate3d(0, 0, 0) scale(1)' },
+              '50%': { transform: 'translate3d(30px, -25px, 0) scale(1.06)' },
+            },
+            floatReverse: {
+              '0%, 100%': { transform: 'translate3d(0, 0, 0) scale(1)' },
+              '50%': { transform: 'translate3d(-35px, 30px, 0) scale(1.08)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.55' },
+              '50%': { opacity: '0.85' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #06070b;
+      color: #f8fafc;
+      overflow-x: hidden;
+    }
+
+    /* Smooth Scroll Fade-In Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px) scale(0.98);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .reveal-delay-1 { transition-delay: 100ms; }
+    .reveal-delay-2 { transition-delay: 200ms; }
+    .reveal-delay-3 { transition-delay: 300ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* Angled Website Mockup Wall (Clearer, High-Contrast Showcase Grid) */
+    .mockup-wall {
+      transform: rotate(-11deg) scale(1.22);
+      transform-origin: center center;
+    }
+
+    .mockup-tile {
+      background: linear-gradient(160deg, rgba(42, 48, 78, 0.92) 0%, rgba(20, 24, 44, 0.96) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-top: 1px solid rgba(255, 255, 255, 0.38);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    /* Ultra-Glossy iOS Liquid Glass Surfaces */
+    .liquid-glass {
+      position: relative;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.13) 0%,
+        rgba(255, 255, 255, 0.05) 45%,
+        rgba(255, 255, 255, 0.02) 100%
+      );
+      backdrop-filter: blur(28px) saturate(185%);
+      -webkit-backdrop-filter: blur(28px) saturate(185%);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-top: 1px solid rgba(255, 255, 255, 0.36);
+      border-left: 1px solid rgba(255, 255, 255, 0.24);
+      box-shadow:
+        0 24px 48px -12px rgba(0, 0, 0, 0.65),
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .liquid-glass-modal {
+      position: relative;
+      background: linear-gradient(
+        155deg,
+        rgba(24, 27, 48, 0.90) 0%,
+        rgba(12, 14, 26, 0.94) 55%,
+        rgba(30, 27, 75, 0.90) 100%
+      );
+      backdrop-filter: blur(36px) saturate(210%);
+      -webkit-backdrop-filter: blur(36px) saturate(210%);
+      border: 1px solid rgba(129, 140, 248, 0.32);
+      border-top: 1px solid rgba(255, 255, 255, 0.45);
+      border-left: 1px solid rgba(255, 255, 255, 0.28);
+      box-shadow:
+        0 32px 70px -12px rgba(0, 0, 0, 0.85),
+        0 0 60px -15px rgba(99, 102, 241, 0.55),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    }
+
+    .liquid-glass-card {
+      position: relative;
+      background: linear-gradient(
+        155deg,
+        rgba(255, 255, 255, 0.10) 0%,
+        rgba(255, 255, 255, 0.035) 50%,
+        rgba(255, 255, 255, 0.015) 100%
+      );
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(255, 255, 255, 0.30);
+      border-left: 1px solid rgba(255, 255, 255, 0.20);
+      box-shadow:
+        0 20px 45px -15px rgba(0, 0, 0, 0.6),
+        inset 0 1px 1px rgba(255, 255, 255, 0.28);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.35s ease,
+                  box-shadow 0.35s ease,
+                  background 0.35s ease,
+                  opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .liquid-glass-card:hover {
+      transform: translateY(-4px);
+      background: linear-gradient(
+        155deg,
+        rgba(255, 255, 255, 0.14) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(99, 102, 241, 0.06) 100%
+      );
+      border-top-color: rgba(255, 255, 255, 0.45);
+      box-shadow:
+        0 28px 60px -15px rgba(0, 0, 0, 0.7),
+        0 0 35px -10px rgba(99, 102, 241, 0.35),
+        inset 0 1px 1px rgba(255, 255, 255, 0.42);
+    }
+
+    /* Highlighted Glass Card (Popular Plan) */
+    .liquid-glass-featured {
+      position: relative;
+      background: linear-gradient(
+        155deg,
+        rgba(99, 102, 241, 0.22) 0%,
+        rgba(255, 255, 255, 0.06) 45%,
+        rgba(79, 70, 229, 0.10) 100%
+      );
+      backdrop-filter: blur(32px) saturate(200%);
+      -webkit-backdrop-filter: blur(32px) saturate(200%);
+      border: 1px solid rgba(129, 140, 248, 0.35);
+      border-top: 1px solid rgba(255, 255, 255, 0.48);
+      border-left: 1px solid rgba(255, 255, 255, 0.30);
+      box-shadow:
+        0 25px 55px -12px rgba(0, 0, 0, 0.7),
+        0 0 50px -12px rgba(99, 102, 241, 0.45),
+        inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    }
+
+    /* Floating Glass Pill / Navbar */
+    .liquid-pill {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.06) 100%
+      );
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-top: 1px solid rgba(255, 255, 255, 0.38);
+      box-shadow:
+        0 12px 32px -8px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    }
+
+    /* Glossy iOS Button */
+    .btn-liquid-primary {
+      background: linear-gradient(180deg, #818cf8 0%, #4f46e5 100%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-top: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow:
+        0 10px 28px -6px rgba(99, 102, 241, 0.65),
+        inset 0 1px 1px rgba(255, 255, 255, 0.45);
+      transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .btn-liquid-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+      box-shadow:
+        0 16px 36px -6px rgba(99, 102, 241, 0.8),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+    }
+
+    .btn-liquid-secondary {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.06) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-top: 1px solid rgba(255, 255, 255, 0.38);
+      box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .btn-liquid-secondary:hover {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.09) 100%);
+      border-top-color: rgba(255, 255, 255, 0.52);
+      transform: translateY(-2px);
+    }
+
+    /* Glass Form Inputs */
+    .glass-input {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35);
+      color: #ffffff;
+      transition: all 0.25s ease;
+    }
+
+    .glass-input:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(129, 140, 248, 0.7);
+      box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.25),
+        inset 0 2px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    .glass-input option {
+      background-color: #0f111a;
+      color: #f8fafc;
+    }
+
+    .glass-grain {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    @keyframes modalPop {
+      0% { opacity: 0; transform: scale(0.92) translateY(12px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .animate-modal-pop {
+      animation: modalPop 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-indigo-500/40 selection:text-white">
+
+  <!-- Ambient Liquid Light Orbs + Clear Angled Website Showcase Wall -->
+  <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <!-- Angled Tilted Grid of Local Website & Google Maps Windows -->
+    <div class="absolute inset-0 opacity-70">
+      <div class="mockup-wall grid grid-cols-2 md:grid-cols-4 gap-5 p-6 w-[130vw] -ml-[15vw] -mt-[8vh]">
+        <!-- Tile 1: Barbershop UI -->
+        <div class="mockup-tile rounded-2xl p-4 h-56 flex flex-col justify-between">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <span class="ml-2 text-[11px] font-medium text-slate-200 bg-white/10 px-2.5 py-0.5 rounded-full">cleancutbarbers.ca</span>
+          </div>
+          <div class="space-y-2">
+            <div class="text-xs font-bold text-white">Sharp Fades &amp; Classic Cuts</div>
+            <div class="h-2.5 w-full rounded bg-white/25"></div>
+            <div class="h-2.5 w-4/5 rounded bg-white/15"></div>
+          </div>
+          <div class="flex gap-2">
+            <div class="px-3 py-1 rounded-lg bg-indigo-500/80 text-[10px] font-semibold text-white">Book Chair</div>
+            <div class="px-3 py-1 rounded-lg bg-white/15 text-[10px] text-slate-200">Hours</div>
+          </div>
+        </div>
+
+        <!-- Tile 2: Google Business Maps Card -->
+        <div class="mockup-tile rounded-2xl p-4 h-56 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-semibold text-emerald-300 bg-emerald-500/25 border border-emerald-400/30 px-2.5 py-0.5 rounded-full">Google Maps #1</span>
+            <span class="text-xs font-bold text-amber-300">★★★★★ 4.9</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2 my-2">
+            <div class="h-16 rounded-xl bg-gradient-to-br from-indigo-500/40 to-purple-500/30 border border-white/20"></div>
+            <div class="h-16 rounded-xl bg-gradient-to-br from-sky-500/40 to-indigo-500/30 border border-white/20"></div>
+            <div class="h-16 rounded-xl bg-gradient-to-br from-violet-500/40 to-fuchsia-500/30 border border-white/20"></div>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-[11px] text-slate-200 font-medium">Open • Closes 7 PM</span>
+            <span class="px-2.5 py-1 rounded-full bg-emerald-500/60 text-[10px] font-semibold text-white">Call Now</span>
+          </div>
+        </div>
+
+        <!-- Tile 3: Local Traffic & Calls Analytics -->
+        <div class="mockup-tile rounded-2xl p-4 h-56 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-semibold text-indigo-200">Local Search Views</span>
+            <span class="text-[11px] font-bold text-emerald-300">+310%</span>
+          </div>
+          <div class="flex items-end gap-2.5 h-28 pt-4 px-1">
+            <div class="w-full bg-indigo-500/45 rounded-t-md h-1/3"></div>
+            <div class="w-full bg-indigo-500/60 rounded-t-md h-1/2"></div>
+            <div class="w-full bg-indigo-400/75 rounded-t-md h-2/3"></div>
+            <div class="w-full bg-indigo-400/90 rounded-t-md h-4/5"></div>
+            <div class="w-full bg-indigo-300 rounded-t-md h-full shadow-[0_0_15px_rgba(165,180,252,0.5)]"></div>
+          </div>
+          <div class="text-[10px] text-slate-300">Google Business Insights</div>
+        </div>
+
+        <!-- Tile 4: Auto Shop Site -->
+        <div class="mockup-tile rounded-2xl p-4 h-56 flex flex-col justify-between">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <span class="ml-2 text-[11px] font-medium text-slate-200 bg-white/10 px-2.5 py-0.5 rounded-full">bathautoandtire.ca</span>
+          </div>
+          <div class="space-y-2">
+            <div class="text-xs font-bold text-sky-200">Same-Day Tire Swaps &amp; Brakes</div>
+            <div class="h-2.5 w-full rounded bg-white/25"></div>
+            <div class="h-2.5 w-2/3 rounded bg-white/15"></div>
+          </div>
+          <div class="px-3 py-1 w-fit rounded-lg bg-sky-500/75 text-[10px] font-semibold text-white">Get Free Quote</div>
+        </div>
+
+        <!-- Row 2 Tiles -->
+        <div class="mockup-tile rounded-2xl p-4 h-56 flex flex-col justify-between">
+          <div class="text-[11px] text-slate-200 font-semibold">Mobile Speed Score</div>
+          <div class="w-20 h-20 mx-auto rounded-full border-4 border-emerald-400 flex items-center justify-center text-base font-extrabold text-emerald-300 shadow-[0_0_20px_rgba(52,211,153,0.35)]">99</div>
+          <div class="text-[10px] text-center text-slate-300">Instant 0.4s Load Time</div>
+        </div>
+
+        <div class="mockup-tile rounded-2xl p-4 h-56 flex flex-col justify-between">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <span class="ml-2 text-[11px] font-medium text-slate-200 bg-white/10 px-2.5 py-0.5 rounded-full">ottawaplumbing.ca</span>
+          </div>
+          <div class="space-y-2">
+            <div class="text-xs font-bold text-violet-200">24/7 Emergency Local Plumber</div>
+            <div class="h-2.5 w-full rounded bg-white/25"></div>
+            <div class="h-2.5 w-5/6 rounded bg-white/15"></div>
+          </div>
+          <div class="px-3 py-1 w-fit rounded-lg bg-indigo-500/80 text-[10px] font-semibold text-white">Call Dispatch</div>
+        </div>
+
+        <div class="mockup-tile rounded-2xl p-4 h-56 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] text-amber-300 font-bold">New 5-Star Review</span>
+            <span class="text-[10px] text-slate-300">2m ago</span>
+          </div>
+          <div class="space-y-2">
+            <p class="text-[11px] text-slate-200 leading-snug">“Found them right on Google Maps—super clean site and fast booking!”</p>
+          </div>
+          <div class="text-[10px] text-indigo-300 font-medium">Verified Local Customer</div>
+        </div>
+
+        <div class="mockup-tile rounded-2xl p-4 h-56 flex flex-col justify-between">
+          <div class="text-[11px] text-indigo-200 font-semibold">Incoming Quote Leads</div>
+          <div class="space-y-2">
+            <div class="h-8 rounded-xl bg-white/15 px-3 flex items-center justify-between">
+              <span class="text-[10px] text-white font-medium">Main St. Salon</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            </div>
+            <div class="h-8 rounded-xl bg-white/15 px-3 flex items-center justify-between">
+              <span class="text-[10px] text-white font-medium">Rideau Landscaping</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            </div>
+          </div>
+          <div class="text-[10px] text-slate-300">Delivered to Inbox</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Balanced Vignette so Background Grid is Obvious & Text Remains Crisp -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#06070b]/45 via-[#06070b]/70 to-[#06070b]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,7,11,0.55)_0%,rgba(6,7,11,0.2)_100%)]"></div>
+
+    <!-- Ambient Liquid Light Orbs -->
+    <div class="absolute -top-32 -left-24 w-[34rem] h-[34rem] rounded-full bg-indigo-600/25 blur-[130px] animate-float-slow"></div>
+    <div class="absolute top-[22%] -right-28 w-[32rem] h-[32rem] rounded-full bg-violet-600/25 blur-[135px] animate-float-reverse"></div>
+    <div class="absolute top-[52%] left-[12%] w-[28rem] h-[28rem] rounded-full bg-sky-500/20 blur-[125px] animate-pulse-glow"></div>
+    <div class="absolute -bottom-36 right-[15%] w-[36rem] h-[36rem] rounded-full bg-indigo-500/25 blur-[140px] animate-float-slow"></div>
+  </div>
+
+  <!-- Floating iOS Glass Navigation Bar -->
+  <header class="fixed top-4 inset-x-0 z-50 px-4 sm:px-6">
+    <nav class="max-w-5xl mx-auto liquid-pill rounded-full px-4 sm:px-6 py-2.5 flex items-center justify-between">
+      <!-- Brand Logo using Next.jpeg -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-full overflow-hidden border border-white/30 shadow-[0_0_18px_rgba(99,102,241,0.5)] group-hover:scale-105 transition-transform bg-obsidian flex items-center justify-center">
+          <img src="Next.jpeg" alt="NextDoor Digital Logo" class="w-full h-full object-cover object-top scale-125" />
+        </div>
+        <div class="flex flex-col leading-none">
+          <span class="font-bold tracking-tight text-white text-sm sm:text-base">NEXTDOOR</span>
+          <span class="text-[9px] font-medium tracking-[0.26em] text-indigo-300/90 uppercase">Digital</span>
+        </div>
+      </a>
+
+      <!-- Center Links -->
+      <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-200">
+        <a href="#services" class="hover:text-white transition-colors">Services</a>
+        <a href="#work" class="hover:text-white transition-colors">Sample Work</a>
+        <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+      </div>
+
+      <!-- CTA Pill -->
+      <a href="#contact" class="btn-liquid-primary text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 rounded-full">
+        Get Started
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="pt-36 pb-20 sm:pt-44 sm:pb-28 px-4 sm:px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <!-- Frosted Status Pill -->
+        <div class="reveal inline-flex items-center gap-2 liquid-pill rounded-full px-4 py-1.5 mb-8">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 shadow-[0_0_10px_#818cf8] animate-pulse"></span>
+          <span class="text-xs font-medium text-indigo-100 tracking-wide">Built for Local Shops, Barbers &amp; Trades</span>
+        </div>
+
+        <h1 class="reveal reveal-delay-1 text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.08] mb-6 drop-shadow-[0_6px_28px_rgba(0,0,0,0.85)]">
+          Turn Local Searches Into
+          <span class="block bg-gradient-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent">
+            Paying Walk-In Customers.
+          </span>
+        </h1>
+
+        <p class="reveal reveal-delay-2 max-w-2xl mx-auto text-base sm:text-lg text-slate-100 leading-relaxed mb-10 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+          We build ultra-clean, fast websites and optimize your Google Maps listing so nearby customers find you first—without agency bloat or thousand-dollar retainers.
+        </p>
+
+        <div class="reveal reveal-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#contact" class="w-full sm:w-auto btn-liquid-primary text-white font-semibold px-8 py-3.5 rounded-2xl text-sm sm:text-base">
+            Request a Free Quote
+          </a>
+          <a href="#work" class="w-full sm:w-auto btn-liquid-secondary text-white font-medium px-8 py-3.5 rounded-2xl text-sm sm:text-base">
+            See Live Samples
+          </a>
+        </div>
+
+        <!-- Frosted Glass Quick-Stats Strip -->
+        <div class="reveal mt-16 liquid-glass rounded-3xl p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 text-center">
+          <div class="sm:border-r border-white/10">
+            <div class="text-2xl sm:text-3xl font-bold text-white">48 Hrs</div>
+            <div class="text-xs sm:text-sm text-slate-300/80 mt-1">Average Launch Time</div>
+          </div>
+          <div class="sm:border-r border-white/10">
+            <div class="text-2xl sm:text-3xl font-bold text-indigo-300">100%</div>
+            <div class="text-xs sm:text-sm text-slate-300/80 mt-1">Mobile &amp; Google Ready</div>
+          </div>
+          <div>
+            <div class="text-2xl sm:text-3xl font-bold text-white">$0 Hassle</div>
+            <div class="text-xs sm:text-sm text-slate-300/80 mt-1">We Handle All Edits &amp; Hosting</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-4 sm:px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="reveal text-center max-w-2xl mx-auto mb-14">
+          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-300">What We Do</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Everything a Local Business Needs Online</h2>
+          <p class="text-slate-300/85 mt-3 text-sm sm:text-base">Simple, high-impact digital setup designed to get your phone ringing.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Card 1 -->
+          <div class="reveal reveal-delay-1 liquid-glass-card rounded-3xl p-7 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-white/25 flex items-center justify-center mb-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)]">
+                <svg class="w-6 h-6 text-indigo-300" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-6-5.686-6-10a6 6 0 1112 0c0 4.314-6 10-6 10z"/>
+                  <circle cx="12" cy="11" r="2.5"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2.5">Google Business Setup</h3>
+              <p class="text-sm text-slate-300/85 leading-relaxed">
+                Show up when locals search "near me." We claim, verify, and optimize your Google Maps profile with hours, photos, and service areas.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/10 text-xs font-medium text-indigo-300">
+              Maps Visibility + Review Links
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="reveal reveal-delay-2 liquid-glass-card rounded-3xl p-7 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-white/25 flex items-center justify-center mb-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)]">
+                <svg class="w-6 h-6 text-indigo-300" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="18" height="16" rx="3"/>
+                  <path stroke-linecap="round" d="M3 9h18M8 14h4"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2.5">Modern 1-Page Website</h3>
+              <p class="text-sm text-slate-300/85 leading-relaxed">
+                A fast, mobile-first website showcasing your services, photos, hours, and click-to-call button so visitors book in seconds.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/10 text-xs font-medium text-indigo-300">
+              Custom Design + Click-to-Call
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="reveal reveal-delay-3 liquid-glass-card rounded-3xl p-7 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-white/25 flex items-center justify-center mb-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)]">
+                <svg class="w-6 h-6 text-indigo-300" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2.5">Monthly Care &amp; Updates</h3>
+              <p class="text-sm text-slate-300/85 leading-relaxed">
+                Need to update prices, holiday hours, or add new photos? Just text or email us—we keep your site fast, secure, and updated year-round.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/10 text-xs font-medium text-indigo-300">
+              Unlimited Small Text &amp; Photo Edits
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Sample Work Showcase (iOS Safari Glass Frame) -->
+    <section id="work" class="py-20 px-4 sm:px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="reveal text-center max-w-2xl mx-auto mb-10">
+          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-300">Interactive Preview</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">See What Your Site Could Look Like</h2>
+          <p class="text-slate-300/85 mt-3 text-sm sm:text-base">Tap between two real local business demos built with our clean layout.</p>
+        </div>
+
+        <!-- Switcher Pills -->
+        <div class="reveal flex justify-center mb-8">
+          <div class="liquid-pill p-1.5 rounded-full inline-flex gap-1.5">
+            <button id="tab-barber" onclick="switchDemo('barber')" class="px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-indigo-500 text-white shadow-[0_4px_15px_rgba(99,102,241,0.5)]">
+              Clean Cut Barbershop
+            </button>
+            <button id="tab-auto" onclick="switchDemo('auto')" class="px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all text-slate-300 hover:text-white">
+              Bath Auto &amp; Tire
+            </button>
+          </div>
+        </div>
+
+        <!-- iOS Glass Browser Window -->
+        <div class="reveal liquid-glass rounded-[2rem] overflow-hidden">
+          <!-- Browser Top Chrome -->
+          <div class="px-5 py-3.5 border-b border-white/15 bg-white/[0.03] flex items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-400/80"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-400/80"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-400/80"></span>
+            </div>
+            <div id="demo-url" class="flex-1 max-w-md mx-auto text-center text-xs text-slate-300/80 bg-black/30 border border-white/10 rounded-full py-1 px-4 truncate">
+              cleancutbarbers.ca
+            </div>
+            <span class="text-[11px] font-medium text-indigo-300 hidden sm:inline">Live Preview</span>
+          </div>
+
+          <!-- Demo 1: Barbershop -->
+          <div id="demo-barber" class="p-6 sm:p-10 bg-gradient-to-br from-slate-900/90 via-indigo-950/40 to-slate-950/90">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+              <div class="max-w-lg">
+                <span class="inline-block text-xs font-semibold uppercase tracking-wider text-indigo-300 bg-indigo-500/15 border border-indigo-400/30 rounded-full px-3 py-1 mb-4">
+                  Walk-Ins Welcome • Open Tue–Sat
+                </span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Sharp Fades, Hot Towel Shaves &amp; Classic Cuts.</h3>
+                <p class="text-sm text-slate-300/85 mt-3 leading-relaxed">
+                  Located right on Main Street. No apps required—check our live hours, view pricing, or call ahead to grab your chair.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-3">
+                  <span class="btn-liquid-primary text-white text-xs font-semibold px-5 py-2.5 rounded-xl">Call (613) 555-0194</span>
+                  <span class="btn-liquid-secondary text-white text-xs font-medium px-5 py-2.5 rounded-xl">Get Directions</span>
+                </div>
+              </div>
+
+              <!-- Mini Service Menu Card -->
+              <div class="w-full md:w-72 liquid-glass rounded-2xl p-5 space-y-3">
+                <div class="text-xs font-bold uppercase tracking-wider text-indigo-200 border-b border-white/10 pb-2">Popular Services</div>
+                <div class="flex justify-between text-sm"><span class="text-slate-200">Skin Fade &amp; Style</span><span class="font-bold text-white">$32</span></div>
+                <div class="flex justify-between text-sm"><span class="text-slate-200">Classic Scissor Cut</span><span class="font-bold text-white">$28</span></div>
+                <div class="flex justify-between text-sm"><span class="text-slate-200">Beard Trim &amp; Lineup</span><span class="font-bold text-white">$18</span></div>
+                <div class="pt-2 border-t border-white/10 text-[11px] text-slate-300/80 flex items-center gap-1.5">
+                  <span class="text-amber-400">★★★★★</span> 4.9 (84 Google Reviews)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demo 2: Auto Shop -->
+          <div id="demo-auto" class="hidden p-6 sm:p-10 bg-gradient-to-br from-slate-900/90 via-sky-950/40 to-slate-950/90">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+              <div class="max-w-lg">
+                <span class="inline-block text-xs font-semibold uppercase tracking-wider text-sky-300 bg-sky-500/15 border border-sky-400/30 rounded-full px-3 py-1 mb-4">
+                  Licensed Mechanics • Same-Day Tire Swaps
+                </span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Honest Auto Repair &amp; Seasonal Tire Service.</h3>
+                <p class="text-sm text-slate-300/85 mt-3 leading-relaxed">
+                  From brake jobs and oil changes to winter tire swaps, we keep local drivers safe with upfront quotes and zero surprise fees.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-3">
+                  <span class="btn-liquid-primary text-white text-xs font-semibold px-5 py-2.5 rounded-xl">Book Service Call</span>
+                  <span class="btn-liquid-secondary text-white text-xs font-medium px-5 py-2.5 rounded-xl">View Shop Hours</span>
+                </div>
+              </div>
+
+              <!-- Mini Service Menu Card -->
+              <div class="w-full md:w-72 liquid-glass rounded-2xl p-5 space-y-3">
+                <div class="text-xs font-bold uppercase tracking-wider text-sky-200 border-b border-white/10 pb-2">Shop Specials</div>
+                <div class="flex justify-between text-sm"><span class="text-slate-200">Synthetic Oil Change</span><span class="font-bold text-white">$69</span></div>
+                <div class="flex justify-between text-sm"><span class="text-slate-200">4-Tire Seasonal Swap</span><span class="font-bold text-white">$49</span></div>
+                <div class="flex justify-between text-sm"><span class="text-slate-200">Brake Inspection</span><span class="font-bold text-emerald-300">FREE</span></div>
+                <div class="pt-2 border-t border-white/10 text-[11px] text-slate-300/80 flex items-center gap-1.5">
+                  <span class="text-amber-400">★★★★★</span> 4.8 (112 Google Reviews)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transparent Pricing Section -->
+    <section id="pricing" class="py-20 px-4 sm:px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="reveal text-center max-w-xl mx-auto mb-14">
+          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-300">Simple Pricing</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">No Hidden Fees. No Contracts.</h2>
+          <p class="text-slate-300/85 mt-3 text-sm sm:text-base">Start with a one-time setup, and add monthly management only if you want us handling updates.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+          <!-- Plan 1: Starter Setup -->
+          <div class="reveal reveal-delay-1 liquid-glass-card rounded-[2rem] p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-sm font-semibold text-indigo-200">Starter Launch</span>
+                <span class="text-xs px-3 py-1 rounded-full bg-white/10 border border-white/15 text-slate-200">One-Time</span>
+              </div>
+              <div class="flex items-baseline gap-1 my-4">
+                <span class="text-5xl font-extrabold text-white">$99</span>
+                <span class="text-sm text-slate-300/80">one-time setup</span>
+              </div>
+              <p class="text-sm text-slate-300/85 mb-6">
+                Everything you need to get your business live on Google and the web fast.
+              </p>
+              <ul class="space-y-3.5 text-sm text-slate-200">
+                <li class="flex items-center gap-3">
+                  <span class="w-5 h-5 rounded-full bg-indigo-500/25 border border-indigo-400/40 flex items-center justify-center text-indigo-300 text-xs">✓</span>
+                  Custom 1-Page Mobile Website
+                </li>
+                <li class="flex items-center gap-3">
+                  <span class="w-5 h-5 rounded-full bg-indigo-500/25 border border-indigo-400/40 flex items-center justify-center text-indigo-300 text-xs">✓</span>
+                  Google Business Profile Setup &amp; Optimization
+                </li>
+                <li class="flex items-center gap-3">
+                  <span class="w-5 h-5 rounded-full bg-indigo-500/25 border border-indigo-400/40 flex items-center justify-center text-indigo-300 text-xs">✓</span>
+                  Click-to-Call &amp; Quote Request Form
+                </li>
+                <li class="flex items-center gap-3">
+                  <span class="w-5 h-5 rounded-full bg-indigo-500/25 border border-indigo-400/40 flex items-center justify-center text-indigo-300 text-xs">✓</span>
+                  Delivered &amp; Live Within 48 Hours
+                </li>
+              </ul>
+            </div>
+
+            <button onclick="selectPlan('Starter Setup ($99 One-Time)')" class="mt-8 w-full btn-liquid-secondary text-white font-semibold py-3.5 rounded-2xl text-sm">
+              Choose Starter Setup
+            </button>
+          </div>
+
+          <!-- Plan 2: Monthly Care -->
+          <div class="reveal reveal-delay-2 liquid-glass-featured rounded-[2rem] p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-sm font-semibold text-white">Growth Care Plan</span>
+                <span class="text-xs px-3 py-1 rounded-full bg-indigo-500/40 border border-indigo-300/50 text-white font-medium">Most Popular</span>
+              </div>
+              <div class="flex items-baseline gap-1 my-4">
+                <span class="text-5xl font-extrabold text-white">$75</span>
+                <span class="text-sm text-indigo-200/90">/ month</span>
+              </div>
+              <p class="text-sm text-indigo-100/85 mb-6">
+                Hands-free website care, updates, and local Google ranking maintenance.
+              </p>
+              <ul class="space-y-3.5 text-sm text-white/95">
+                <li class="flex items-center gap-3">
+                  <span class="w-5 h-5 rounded-full bg-indigo-400/35 border border-white/40 flex items-center justify-center text-white text-xs">✓</span>
+                  Everything in Starter Launch Included
+                </li>
+                <li class="flex items-center gap-3">
+                  <span class="w-5 h-5 rounded-full bg-indigo-400/35 border border-white/40 flex items-center justify-center text-white text-xs">✓</span>
+                  Unlimited Price, Photo &amp; Hour Updates
+                </li>
+                <li class="flex items-center gap-3">
+                  <span class="w-5 h-5 rounded-full bg-indigo-400/35 border border-white/40 flex items-center justify-center text-white text-xs">✓</span>
+                  Monthly Google Profile Posts &amp; Checkups
+                </li>
+                <li class="flex items-center gap-3">
+                  <span class="w-5 h-5 rounded-full bg-indigo-400/35 border border-white/40 flex items-center justify-center text-white text-xs">✓</span>
+                  Cancel Anytime — Zero Lock-In
+                </li>
+              </ul>
+            </div>
+
+            <button onclick="selectPlan('Starter + Growth Care ($99 + $75/mo)')" class="mt-8 w-full btn-liquid-primary text-white font-semibold py-3.5 rounded-2xl text-sm">
+              Choose Growth Care
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / Quote Form Section -->
+    <section id="contact" class="py-20 pb-28 px-4 sm:px-6">
+      <div class="max-w-2xl mx-auto">
+        <div class="reveal liquid-glass rounded-[2.25rem] p-7 sm:p-11">
+          <div class="text-center mb-8">
+            <span class="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-300">Free Mockup &amp; Quote</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mt-2">Let’s Get Your Business Online</h2>
+            <p class="text-sm text-slate-300/85 mt-2">
+              Tell us a little about your business and we’ll reply within a few hours with a free preview idea.
+            </p>
+          </div>
+
+          <!-- Formspree Form (Submits silently in background, never redirects) -->
+          <form id="quoteForm" action="https://formspree.io/f/mppdwroq" method="POST" class="space-y-4">
+            <!-- Invisible Anti-Spam Honeypot -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" />
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1.5 ml-1">Business Name *</label>
+                <input type="text" name="business_name" required placeholder="e.g. Main Street Barbers" class="w-full glass-input rounded-2xl px-4 py-3 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1.5 ml-1">Your Name *</label>
+                <input type="text" name="contact_name" required placeholder="Your name" class="w-full glass-input rounded-2xl px-4 py-3 text-sm" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1.5 ml-1">Email Address *</label>
+                <input type="email" name="email" required placeholder="you@business.com" class="w-full glass-input rounded-2xl px-4 py-3 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1.5 ml-1">Phone Number (Optional)</label>
+                <input type="tel" name="phone" placeholder="(613) 555-0100" class="w-full glass-input rounded-2xl px-4 py-3 text-sm" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1.5 ml-1">Which Option Are You Interested In?</label>
+              <select id="planSelect" name="plan" class="w-full glass-input rounded-2xl px-4 py-3 text-sm">
+                <option value="Starter Setup ($99 One-Time)">Starter Setup ($99 One-Time)</option>
+                <option value="Starter + Growth Care ($99 + $75/mo)" selected>Starter + Growth Care ($99 + $75/mo)</option>
+                <option value="Google Business Profile Only">Google Business Profile Setup Only</option>
+                <option value="Just Asking a Question">Just Asking a Question</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1.5 ml-1">What Does Your Business Do?</label>
+              <textarea name="message" rows="3" placeholder="Tell us your services, town, or any questions you have..." class="w-full glass-input rounded-2xl px-4 py-3 text-sm resize-none"></textarea>
+            </div>
+
+            <button id="submitBtn" type="submit" class="w-full btn-liquid-primary text-white font-semibold py-4 rounded-2xl text-sm sm:text-base mt-2 flex items-center justify-center gap-2">
+              <span>Send Free Quote Request</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 5l7 7-7 7"/>
+              </svg>
+            </button>
+
+            <p id="formError" class="hidden text-center text-xs text-rose-200 bg-rose-500/15 border border-rose-400/30 rounded-xl py-2.5 px-4"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Custom Liquid-Glass Popup Modal -->
+  <div id="glassSuccessModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-md">
+    <div class="liquid-glass-modal animate-modal-pop max-w-md w-full rounded-[2rem] p-8 text-center space-y-5">
+      <div class="w-16 h-16 mx-auto rounded-full bg-indigo-500/25 border border-indigo-300/50 flex items-center justify-center shadow-[0_0_35px_rgba(99,102,241,0.65)]">
+        <svg class="w-8 h-8 text-indigo-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+      <div class="space-y-2">
+        <h3 class="text-2xl font-bold text-white tracking-tight">Email Sent!</h3>
+        <p class="text-sm text-slate-300/90 leading-relaxed">
+          We'll get back to you soon.
+        </p>
+      </div>
+      <button onclick="closeSuccessModal()" class="w-full btn-liquid-primary text-white font-semibold py-3.5 rounded-2xl text-sm">
+        Done
+      </button>
+    </div>
+  </div>
+
+  <!-- Minimal Frosted Footer -->
+  <footer class="border-t border-white/10 bg-black/30 backdrop-blur-xl py-8 px-4 sm:px-6">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <div class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded-full overflow-hidden border border-white/25 bg-obsidian flex items-center justify-center">
+          <img src="Next.jpeg" alt="NextDoor Digital Logo" class="w-full h-full object-cover object-top scale-125" />
+        </div>
+        <span class="font-semibold text-slate-200">NextDoor Digital</span>
+        <span>• Local Web &amp; Google Presence</span>
+      </div>
+      <div>© 2026 NextDoor Digital. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Interactive Scripts -->
+  <script>
+    // Scroll Fade-In Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Demo Showcase Switcher
+    function switchDemo(type) {
+      const barberDemo = document.getElementById('demo-barber');
+      const autoDemo = document.getElementById('demo-auto');
+      const barberTab = document.getElementById('tab-barber');
+      const autoTab = document.getElementById('tab-auto');
+      const urlBar = document.getElementById('demo-url');
+
+      if (type === 'barber') {
+        barberDemo.classList.remove('hidden');
+        autoDemo.classList.add('hidden');
+        barberTab.className = 'px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-indigo-500 text-white shadow-[0_4px_15px_rgba(99,102,241,0.5)]';
+        autoTab.className = 'px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all text-slate-300 hover:text-white';
+        urlBar.textContent = 'cleancutbarbers.ca';
+      } else {
+        autoDemo.classList.remove('hidden');
+        barberDemo.classList.add('hidden');
+        autoTab.className = 'px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-indigo-500 text-white shadow-[0_4px_15px_rgba(99,102,241,0.5)]';
+        barberTab.className = 'px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all text-slate-300 hover:text-white';
+        urlBar.textContent = 'bathautoandtire.ca';
+      }
+    }
+
+    // Auto-select pricing plan & scroll smoothly to form
+    function selectPlan(planName) {
+      const select = document.getElementById('planSelect');
+      select.value = planName;
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Background AJAX Submission + Custom Liquid-Glass Popup Modal
+    const quoteForm = document.getElementById('quoteForm');
+    const formError = document.getElementById('formError');
+    const submitBtn = document.getElementById('submitBtn');
+    const successModal = document.getElementById('glassSuccessModal');
+
+    quoteForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      formError.classList.add('hidden');
+
+      if (window.location.protocol === 'file:') {
+        formError.textContent = 'Browsers block background forms from local file:// paths. Upload to Cloudflare Pages / Puter / Tiiny Host to see the popup.';
+        formError.classList.remove('hidden');
+        return;
+      }
+
+      const originalBtnHTML = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Sending...</span>';
+
+      try {
+        const response = await fetch(quoteForm.action, {
+          method: 'POST',
+          body: new FormData(quoteForm),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          quoteForm.reset();
+          successModal.classList.remove('hidden');
+          successModal.classList.add('flex');
+        } else {
+          const data = await response.json();
+          formError.textContent = data.errors ? data.errors.map(err => err.message).join(', ') : 'Please turn CAPTCHA Off in Formspree Settings and try again.';
+          formError.classList.remove('hidden');
+        }
+      } catch (err) {
+        formError.textContent = 'Network error. Please check your connection and try again.';
+        formError.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+      }
+    });
+
+    function closeSuccessModal() {
+      successModal.classList.add('hidden');
+      successModal.classList.remove('flex');
+    }
+
+    // Close modal if user clicks outside the glass card
+    successModal.addEventListener('click', function (e) {
+      if (e.target === successModal) {
+        closeSuccessModal();
+      }
+    });
+  </script>
+</body>
+</html>
