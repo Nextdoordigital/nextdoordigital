@@ -75,7 +75,7 @@
       }
     }
 
-    /* Angled Website Mockup Wall (Clearer, High-Contrast Showcase Grid) */
+    /* Angled Website Mockup Wall */
     .mockup-wall {
       transform: rotate(-11deg) scale(1.22);
       transform-origin: center center;
@@ -260,11 +260,6 @@
     .glass-input option {
       background-color: #0f111a;
       color: #f8fafc;
-    }
-
-    .glass-grain {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 0);
-      background-size: 24px 24px;
     }
 
     @keyframes modalPop {
@@ -759,11 +754,8 @@
             </p>
           </div>
 
-          <!-- Formspree Form (Submits silently in background, never redirects) -->
+          <!-- Formspree Form (JSON AJAX Submission — No Redirects, Works Without CAPTCHA) -->
           <form id="quoteForm" action="https://formspree.io/f/mppdwroq" method="POST" class="space-y-4">
-            <!-- Invisible Anti-Spam Honeypot -->
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" />
-
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-medium text-slate-300 mb-1.5 ml-1">Business Name *</label>
@@ -897,7 +889,7 @@
       document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Background AJAX Submission + Custom Liquid-Glass Popup Modal
+    // Clean JSON AJAX Submission + Custom Liquid-Glass Popup Modal
     const quoteForm = document.getElementById('quoteForm');
     const formError = document.getElementById('formError');
     const submitBtn = document.getElementById('submitBtn');
@@ -907,34 +899,39 @@
       e.preventDefault();
       formError.classList.add('hidden');
 
-      if (window.location.protocol === 'file:') {
-        formError.textContent = 'Browsers block background forms from local file:// paths. Upload to Cloudflare Pages / Puter / Tiiny Host to see the popup.';
-        formError.classList.remove('hidden');
-        return;
-      }
-
       const originalBtnHTML = submitBtn.innerHTML;
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span>Sending...</span>';
 
+      // Convert form fields into a clean JSON object
+      const formData = new FormData(quoteForm);
+      const payload = Object.fromEntries(formData.entries());
+
       try {
         const response = await fetch(quoteForm.action, {
           method: 'POST',
-          body: new FormData(quoteForm),
-          headers: { 'Accept': 'application/json' }
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
         });
+
+        const result = await response.json().catch(() => ({}));
 
         if (response.ok) {
           quoteForm.reset();
           successModal.classList.remove('hidden');
           successModal.classList.add('flex');
         } else {
-          const data = await response.json();
-          formError.textContent = data.errors ? data.errors.map(err => err.message).join(', ') : 'Please turn CAPTCHA Off in Formspree Settings and try again.';
+          const exactReason = result.errors && result.errors.length
+            ? result.errors.map(err => err.message).join(' • ')
+            : (result.error || `Formspree rejected request (Status ${response.status}).`);
+          formError.textContent = exactReason;
           formError.classList.remove('hidden');
         }
       } catch (err) {
-        formError.textContent = 'Network error. Please check your connection and try again.';
+        formError.textContent = 'Network error. Check your internet connection and try again.';
         formError.classList.remove('hidden');
       } finally {
         submitBtn.disabled = false;
