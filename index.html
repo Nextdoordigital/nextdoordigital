@@ -6,11 +6,68 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="theme-color" content="#0b0518" />
+  <meta name="description" content="NextDoor Digital — Ottawa & Gatineau local web design. Get a custom, mobile-ready website preview 100% free before paying. $99 CAD one-time launch or optional $75/mo care plan." />
   <title>NextDoor Digital | $99 Ottawa Web Design • Free Preview First</title>
 
   <!-- Browser Favicon & Apple Home Screen App Icon -->
   <link rel="icon" type="image/jpeg" href="logo.jpeg" />
   <link rel="apple-touch-icon" href="logo.jpeg" />
+
+  <!-- JSON-LD Structured Data for Local Ottawa / Gatineau SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "NextDoor Digital",
+    "description": "Ottawa local web design agency offering free custom website previews first, $99 CAD one-time launches, and optional $75/month all-in website care plans.",
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Ottawa",
+        "containedInPlace": {
+          "@type": "AdministrativeArea",
+          "name": "Ontario"
+        }
+      },
+      {
+        "@type": "City",
+        "name": "Gatineau",
+        "containedInPlace": {
+          "@type": "AdministrativeArea",
+          "name": "Quebec"
+        }
+      }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ottawa",
+      "addressRegion": "ON",
+      "addressCountry": "CA"
+    },
+    "priceRange": "$99 CAD",
+    "knowsLanguage": ["en", "fr"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Web Design & Care Packages",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": "$99 One-Time Launch",
+          "description": "Custom 1-page mobile-ready website with click-to-call, quote form, Google Maps & 5-star review showcase, fast free hosting setup, and 48-hour free preview first.",
+          "price": "99.00",
+          "priceCurrency": "CAD"
+        },
+        {
+          "@type": "Offer",
+          "name": "$75 / Month All-In Care Plan",
+          "description": "Optional monthly care plan including custom .ca or .com domain, unlimited text & photo updates, priority same-day Ottawa support, and monthly speed & uptime checks.",
+          "price": "75.00",
+          "priceCurrency": "CAD"
+        }
+      ]
+    }
+  }
+  </script>
 
   <!-- Plus Jakarta Sans Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,9 +76,6 @@
 
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide Icons via CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
 
   <script>
     tailwind.config = {
@@ -101,7 +155,7 @@
       filter: blur(110px);
       pointer-events: none;
       z-index: 0;
-      opacity: 0.65;
+      opacity: 0.6;
     }
 
     /* Custom Range Sliders */
@@ -164,45 +218,74 @@
 </head>
 <body class="antialiased selection:bg-fuchsia-500 selection:text-white relative">
 
+  <!-- Hardware-Accelerated Ambient Purple Liquid & Particle Canvas Backdrop -->
+  <canvas id="ambientCanvas" aria-hidden="true" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
   <!-- Ambient Royal Purple / Magenta / Indigo Orbs Refracting Through Glass -->
-  <div class="ambient-orb w-[420px] h-[420px] bg-purple-600/50 -top-24 -left-24"></div>
-  <div class="ambient-orb w-[500px] h-[500px] bg-fuchsia-600/35 top-[28%] -right-32"></div>
-  <div class="ambient-orb w-[460px] h-[460px] bg-indigo-600/45 top-[62%] -left-28"></div>
-  <div class="ambient-orb w-[440px] h-[440px] bg-violet-600/40 bottom-10 right-10"></div>
+  <div class="ambient-orb w-[420px] h-[420px] bg-purple-600/45 -top-24 -left-24"></div>
+  <div class="ambient-orb w-[500px] h-[500px] bg-fuchsia-600/30 top-[28%] -right-32"></div>
+  <div class="ambient-orb w-[460px] h-[460px] bg-indigo-600/40 top-[62%] -left-28"></div>
+  <div class="ambient-orb w-[440px] h-[440px] bg-violet-600/35 bottom-10 right-10"></div>
 
   <!-- =========================================================================
-       STICKY iOS GLASS NAVBAR
+       STICKY iOS GLASS NAVBAR WITH EN / FR BILINGUAL TOGGLE
   ========================================================================== -->
   <header class="sticky top-0 z-50 px-4 sm:px-8 pt-[max(1rem,env(safe-area-inset-top))]">
-    <div class="max-w-7xl mx-auto ios-glass rounded-full px-5 sm:px-8 py-3 flex items-center justify-between gap-4">
-      <!-- Brand Logo (Integrates logo.jpeg with seamless fallback) -->
-      <a href="#" class="flex items-center gap-3 group">
+    <div class="max-w-7xl mx-auto ios-glass rounded-full px-4 sm:px-8 py-3 flex items-center justify-between gap-3">
+      <!-- Brand Logo (Integrates logo.jpeg with crisp custom inline SVG fallback) -->
+      <a href="#" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
         <img
           src="logo.jpeg"
           alt="NextDoor Digital Logo"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-          class="h-10 sm:h-11 w-auto max-w-[175px] object-contain rounded-xl border border-purple-300/25 shadow-[0_0_20px_rgba(168,85,247,0.35)]"
+          class="h-9 sm:h-11 w-auto max-w-[165px] object-contain rounded-xl border border-purple-300/25 shadow-[0_0_20px_rgba(168,85,247,0.35)]"
         />
-        <!-- Fallback Icon Badge if logo.jpeg isn't in the current preview folder -->
-        <span style="display: none;" class="w-9 h-9 rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-700 items-center justify-center border border-white/40 shadow-lg">
-          <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
+        <!-- Crisp Vector SVG Emblem Fallback (Razor-sharp on iPhone to 4K TV) -->
+        <span style="display: none;" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-fuchsia-500 via-purple-600 to-indigo-700 items-center justify-center border border-white/40 shadow-[0_0_20px_rgba(192,38,211,0.45)]">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 10.5L12 3l9 7.5" />
+            <path d="M5 9.5V20h14V9.5" />
+            <path d="M10 20v-6h4v6" />
+          </svg>
         </span>
-        <span class="font-extrabold text-base sm:text-lg tracking-tight text-white">
+        <span class="font-extrabold text-sm sm:text-lg tracking-tight text-white">
           NextDoor <span class="text-purple-300">Digital</span>
         </span>
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden md:flex items-center gap-9 text-sm font-semibold text-purple-100/85">
-        <a href="#live-demo" class="hover:text-white transition-colors">Live Demo</a>
-        <a href="#savings" class="hover:text-white transition-colors">Savings</a>
-        <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-purple-100/85">
+        <a href="#live-demo" data-i18n="nav_demo" class="hover:text-white transition-colors">Live Demo</a>
+        <a href="#savings" data-i18n="nav_savings" class="hover:text-white transition-colors">Savings</a>
+        <a href="#pricing" data-i18n="nav_pricing" class="hover:text-white transition-colors">Pricing</a>
       </nav>
 
-      <!-- CTA Button -->
-      <a href="#free-preview" class="btn-glow-purple text-white font-bold text-xs sm:text-sm px-5 sm:px-6 py-2.5 rounded-full whitespace-nowrap">
-        Free Preview
-      </a>
+      <!-- Right Controls: EN / FR Bilingual Pill + Free Preview CTA -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Bilingual EN / FR Switcher -->
+        <div role="group" aria-label="Language Switcher" class="inline-flex items-center rounded-full bg-white/10 border border-white/25 p-0.5 text-xs font-extrabold">
+          <button
+            type="button"
+            id="langEnBtn"
+            data-lang="en"
+            class="px-2.5 sm:px-3 py-1.5 rounded-full bg-purple-500/70 text-white shadow-sm transition-all"
+          >
+            EN
+          </button>
+          <button
+            type="button"
+            id="langFrBtn"
+            data-lang="fr"
+            class="px-2.5 sm:px-3 py-1.5 rounded-full text-purple-200/80 hover:text-white transition-all"
+          >
+            FR
+          </button>
+        </div>
+
+        <a href="#free-preview" data-i18n="nav_cta" class="btn-glow-purple text-white font-bold text-xs sm:text-sm px-4 sm:px-6 py-2.5 rounded-full whitespace-nowrap">
+          Free Preview
+        </a>
+      </div>
     </div>
   </header>
 
@@ -219,26 +302,34 @@
           <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
             <div class="inline-flex items-center gap-2.5 ios-glass rounded-full px-4 py-2 text-xs sm:text-sm font-semibold text-purple-200">
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>Ottawa Local Web Design • Free Preview First</span>
+              <span data-i18n="hero_badge">Ottawa Local Web Design • Free Preview First</span>
             </div>
 
-            <h1 class="font-extrabold text-[clamp(2.35rem,4.6vw,4.15rem)] leading-[1.1] tracking-tight text-white">
+            <h1 data-i18n-html="hero_title" class="font-extrabold text-[clamp(2.35rem,4.6vw,4.15rem)] leading-[1.1] tracking-tight text-white">
               Websites That Turn Ottawa Searches Into <span class="text-gradient-purple">Booked Jobs</span>
             </h1>
 
-            <p class="text-[clamp(1.05rem,1.25vw,1.22rem)] text-purple-100/85 max-w-2xl mx-auto lg:mx-0 leading-[1.8]">
+            <p data-i18n-html="hero_subtitle" class="text-[clamp(1.05rem,1.25vw,1.22rem)] text-purple-100/85 max-w-2xl mx-auto lg:mx-0 leading-[1.8]">
               We design a custom, mobile-ready website preview for your business <strong class="text-white">100% free</strong> before you pay a cent. Own it forever for a <strong class="text-white">$99 one-time build</strong>—or add optional <strong class="text-white">$75/mo full care</strong> so you never lift a finger.
             </p>
 
             <!-- Hero Buttons -->
             <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <a href="#free-preview" class="w-full sm:w-auto btn-glow-purple text-white font-bold text-base px-8 py-4 rounded-full text-center flex items-center justify-center gap-2">
-                <span>Get Your Free Preview</span>
-                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                <span data-i18n="hero_btn_primary">Get Your Free Preview</span>
+                <!-- Crisp Inline SVG Arrow -->
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
               </a>
               <a href="#live-demo" class="w-full sm:w-auto ios-glass ios-glass-hover text-white font-semibold text-base px-8 py-4 rounded-full text-center flex items-center justify-center gap-2">
-                <i data-lucide="smartphone" class="w-4 h-4 text-purple-300"></i>
-                <span>Test Live Demo</span>
+                <!-- Crisp Inline SVG Smartphone -->
+                <svg class="w-4 h-4 text-purple-300 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+                  <path d="M12 18h.01" />
+                </svg>
+                <span data-i18n="hero_btn_secondary">Test Live Demo</span>
               </a>
             </div>
           </div>
@@ -250,8 +341,18 @@
             <div class="w-full max-w-[380px] ios-glass rounded-3xl p-4 space-y-3">
               <div class="flex items-center justify-between gap-2">
                 <span class="text-xs font-bold uppercase tracking-wider text-purple-200 flex items-center gap-1.5">
-                  <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-fuchsia-300"></i>
-                  Live Phone Simulator
+                  <svg class="w-3.5 h-3.5 text-fuchsia-300 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="21" x2="14" y1="4" y2="4" />
+                    <line x1="10" x2="3" y1="4" y2="4" />
+                    <line x1="21" x2="12" y1="12" y2="12" />
+                    <line x1="8" x2="3" y1="12" y2="12" />
+                    <line x1="21" x2="16" y1="20" y2="20" />
+                    <line x1="12" x2="3" y1="20" y2="20" />
+                    <line x1="14" x2="14" y1="2" y2="6" />
+                    <line x1="8" x2="8" y1="10" y2="14" />
+                    <line x1="16" x2="16" y1="18" y2="22" />
+                  </svg>
+                  <span data-i18n="sim_label">Live Phone Simulator</span>
                 </span>
                 <!-- Dark / Light Screen Toggle -->
                 <button
@@ -259,7 +360,17 @@
                   id="phoneThemeToggle"
                   class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 border border-white/25 text-xs font-semibold text-white transition-all"
                 >
-                  <i data-lucide="sun-moon" class="w-3.5 h-3.5 text-amber-300"></i>
+                  <svg class="w-3.5 h-3.5 text-amber-300 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="M12 2v2" />
+                    <path d="M12 20v2" />
+                    <path d="m4.93 4.93 1.41 1.41" />
+                    <path d="m17.66 17.66 1.41 1.41" />
+                    <path d="M2 12h2" />
+                    <path d="M20 12h2" />
+                    <path d="m6.34 17.66-1.41 1.41" />
+                    <path d="m19.07 4.93-1.41 1.41" />
+                  </svg>
                   <span id="phoneThemeLabel">Purple Dark</span>
                 </button>
               </div>
@@ -275,16 +386,16 @@
 
               <!-- Trade Preset Pills -->
               <div class="grid grid-cols-2 gap-2" id="tradePresetButtons">
-                <button type="button" data-trade="detailing" class="trade-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-purple-500/45 border border-purple-300/60 text-white transition-all">
+                <button type="button" data-trade="detailing" data-i18n="trade_detailing" class="trade-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-purple-500/45 border border-purple-300/60 text-white transition-all">
                   Auto Detailing
                 </button>
-                <button type="button" data-trade="cleaning" class="trade-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 border border-white/15 text-purple-100/85 hover:bg-white/20 transition-all">
+                <button type="button" data-trade="cleaning" data-i18n="trade_cleaning" class="trade-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 border border-white/15 text-purple-100/85 hover:bg-white/20 transition-all">
                   House Cleaning
                 </button>
-                <button type="button" data-trade="handyman" class="trade-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 border border-white/15 text-purple-100/85 hover:bg-white/20 transition-all">
+                <button type="button" data-trade="handyman" data-i18n="trade_handyman" class="trade-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 border border-white/15 text-purple-100/85 hover:bg-white/20 transition-all">
                   Handyman
                 </button>
-                <button type="button" data-trade="landscaping" class="trade-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 border border-white/15 text-purple-100/85 hover:bg-white/20 transition-all">
+                <button type="button" data-trade="landscaping" data-i18n="trade_landscaping" class="trade-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 border border-white/15 text-purple-100/85 hover:bg-white/20 transition-all">
                   Landscaping
                 </button>
               </div>
@@ -302,9 +413,17 @@
                   <div class="w-24 h-5 bg-black rounded-full border border-white/15 flex items-center justify-end px-2">
                     <span class="w-2 h-2 rounded-full bg-purple-500/80"></span>
                   </div>
-                  <span class="flex items-center gap-1">
-                    <i data-lucide="wifi" class="w-3 h-3"></i>
-                    <i data-lucide="battery-full" class="w-3.5 h-3.5"></i>
+                  <span class="flex items-center gap-1.5">
+                    <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                      <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                      <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                      <line x1="12" x2="12.01" y1="20" y2="20" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect width="16" height="10" x="2" y="7" rx="2" ry="2" />
+                      <line x1="22" x2="22" y1="11" y2="13" />
+                    </svg>
                   </span>
                 </div>
 
@@ -346,10 +465,10 @@
 
                   <!-- Simulated Click-to-Call & Quote CTA -->
                   <div class="pt-1 space-y-2">
-                    <div class="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white font-bold text-xs text-center shadow-lg">
+                    <div id="simCtaText" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white font-bold text-xs text-center shadow-lg">
                       Get Instant Quote • (613) 555-0194
                     </div>
-                    <p class="text-[10px] text-center opacity-65">
+                    <p id="simFooterCaption" class="text-[10px] text-center opacity-65">
                       Live Mobile Preview by NextDoor Digital
                     </p>
                   </div>
@@ -369,13 +488,24 @@
       <div class="max-w-7xl mx-auto px-6 sm:px-10 space-y-12">
         <div class="max-w-3xl space-y-4 reveal">
           <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-purple-300">
-            <i data-lucide="calculator" class="w-4 h-4"></i>
-            Agency Savings Calculator
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="16" height="20" x="4" y="2" rx="2" />
+              <line x1="8" x2="16" y1="6" y2="6" />
+              <line x1="16" x2="16" y1="14" y2="18" />
+              <path d="M16 10h.01" />
+              <path d="M12 10h.01" />
+              <path d="M8 10h.01" />
+              <path d="M12 14h.01" />
+              <path d="M8 14h.01" />
+              <path d="M12 18h.01" />
+              <path d="M8 18h.01" />
+            </svg>
+            <span data-i18n="savings_eyebrow">Agency Savings Calculator</span>
           </span>
-          <h2 class="font-extrabold text-[clamp(1.95rem,3.6vw,3rem)] leading-tight text-white">
+          <h2 data-i18n="savings_title" class="font-extrabold text-[clamp(1.95rem,3.6vw,3rem)] leading-tight text-white">
             See How Much You Save vs. Monthly Web Agencies
           </h2>
-          <p class="text-base sm:text-lg text-purple-100/80 leading-relaxed">
+          <p data-i18n="savings_subtitle" class="text-base sm:text-lg text-purple-100/80 leading-relaxed">
             Most Ottawa agencies lock small businesses into $200–$500/month retainers for a basic site. Drag the sliders below to compare against our $99 one-time launch.
           </p>
         </div>
@@ -385,10 +515,10 @@
             <!-- Slider 1: Typical Agency Monthly Rate ($150 to $500/mo, default $300/mo) -->
             <div class="space-y-4">
               <div class="flex items-center justify-between gap-4">
-                <label for="agencyRateSlider" class="text-sm sm:text-base font-semibold text-purple-100">
+                <label for="agencyRateSlider" data-i18n="slider_rate_label" class="text-sm sm:text-base font-semibold text-purple-100">
                   What typical agencies charge per month
                 </label>
-                <span id="agencyRateOutput" class="font-extrabold text-lg sm:text-xl text-white bg-white/10 border border-white/20 px-4 py-1.5 rounded-full">
+                <span id="agencyRateOutput" class="font-extrabold text-lg sm:text-xl text-white bg-white/10 border border-white/20 px-4 py-1.5 rounded-full whitespace-nowrap">
                   $300 / mo
                 </span>
               </div>
@@ -402,19 +532,19 @@
                 class="purple-slider w-full"
               />
               <div class="flex justify-between text-xs text-purple-200/70 font-medium">
-                <span>$150/mo</span>
-                <span>$300/mo</span>
-                <span>$500/mo</span>
+                <span data-i18n="slider_rate_min">$150/mo</span>
+                <span data-i18n="slider_rate_mid">$300/mo</span>
+                <span data-i18n="slider_rate_max">$500/mo</span>
               </div>
             </div>
 
             <!-- Slider 2: Timeframe (1 to 5 years, default 3 years) -->
             <div class="space-y-4">
               <div class="flex items-center justify-between gap-4">
-                <label for="timeframeSlider" class="text-sm sm:text-base font-semibold text-purple-100">
+                <label for="timeframeSlider" data-i18n="slider_time_label" class="text-sm sm:text-base font-semibold text-purple-100">
                   Timeframe
                 </label>
-                <span id="timeframeOutput" class="font-extrabold text-lg sm:text-xl text-white bg-white/10 border border-white/20 px-4 py-1.5 rounded-full">
+                <span id="timeframeOutput" class="font-extrabold text-lg sm:text-xl text-white bg-white/10 border border-white/20 px-4 py-1.5 rounded-full whitespace-nowrap">
                   3 Years (36 mos)
                 </span>
               </div>
@@ -428,9 +558,9 @@
                 class="purple-slider w-full"
               />
               <div class="flex justify-between text-xs text-purple-200/70 font-medium">
-                <span>1 Year</span>
-                <span>3 Years</span>
-                <span>5 Years</span>
+                <span data-i18n="slider_time_min">1 Year</span>
+                <span data-i18n="slider_time_mid">3 Years</span>
+                <span data-i18n="slider_time_max">5 Years</span>
               </div>
             </div>
           </div>
@@ -438,14 +568,14 @@
           <!-- Savings Breakdown Output Cards -->
           <div class="pt-8 border-t border-white/15 grid sm:grid-cols-3 gap-6 items-center">
             <div class="rounded-2xl bg-white/5 border border-white/15 p-6 space-y-1">
-              <span class="text-xs font-bold uppercase tracking-wider text-purple-200/75">
+              <span data-i18n="card_1yr_label" class="text-xs font-bold uppercase tracking-wider text-purple-200/75">
                 1-Year Savings vs. $99
               </span>
               <div id="oneYearSavingsOutput" class="font-extrabold text-2xl sm:text-3xl text-white">
                 $3,501
               </div>
               <p class="text-xs text-purple-200/70">
-                Competitor 1-yr cost: <span id="oneYearCompetitorOutput" class="line-through">$3,600</span>
+                <span data-i18n="card_1yr_sub">Competitor 1-yr cost:</span> <span id="oneYearCompetitorOutput" class="line-through">$3,600</span>
               </p>
             </div>
 
@@ -457,7 +587,7 @@
                 $10,800
               </div>
               <p class="text-xs text-purple-200/70">
-                vs. NextDoor Digital: <strong class="text-white">$99 once</strong>
+                <span data-i18n="card_comp_sub">vs. NextDoor Digital:</span> <strong data-i18n="card_comp_once" class="text-white">$99 once</strong>
               </p>
             </div>
 
@@ -468,7 +598,7 @@
               <div id="multiYearSavingsOutput" class="font-extrabold text-3xl sm:text-4xl text-gradient-purple">
                 $10,701
               </div>
-              <p class="text-xs text-purple-100/85">
+              <p data-i18n="card_total_sub" class="text-xs text-purple-100/85">
                 Money that stays in your business
               </p>
             </div>
@@ -484,13 +614,16 @@
       <div class="max-w-7xl mx-auto px-6 sm:px-10 space-y-14">
         <div class="max-w-3xl space-y-4 reveal">
           <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-purple-300">
-            <i data-lucide="badge-dollar-sign" class="w-4 h-4"></i>
-            Simple, Honest Pricing
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" x2="12" y1="2" y2="22" />
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+            <span data-i18n="pricing_eyebrow">Simple, Honest Pricing</span>
           </span>
-          <h2 class="font-extrabold text-[clamp(1.95rem,3.6vw,3rem)] leading-tight text-white">
+          <h2 data-i18n="pricing_title" class="font-extrabold text-[clamp(1.95rem,3.6vw,3rem)] leading-tight text-white">
             Own Your Site for $99 — Or Add Hands-Free Care
           </h2>
-          <p class="text-base sm:text-lg text-purple-100/80 leading-relaxed">
+          <p data-i18n="pricing_subtitle" class="text-base sm:text-lg text-purple-100/80 leading-relaxed">
             Every project starts with a free live preview built specifically for your Ottawa business. Only pay after you see it and approve.
           </p>
         </div>
@@ -501,52 +634,70 @@
           <div class="ios-glass ios-glass-hover rounded-[32px] p-8 sm:p-10 border-2 border-fuchsia-400/60 shadow-[0_0_55px_rgba(192,38,211,0.28)] flex flex-col justify-between space-y-8 reveal">
             <div class="space-y-6">
               <div class="flex flex-wrap items-center justify-between gap-2">
-                <span class="px-3.5 py-1 rounded-full bg-fuchsia-500/30 border border-fuchsia-300/50 text-xs font-bold uppercase tracking-wider text-white">
+                <span data-i18n="p1_badge" class="px-3.5 py-1 rounded-full bg-fuchsia-500/30 border border-fuchsia-300/50 text-xs font-bold uppercase tracking-wider text-white">
                   Most Popular
                 </span>
-                <span class="text-xs font-bold uppercase tracking-wider text-emerald-300">
+                <span data-i18n="p1_tag" class="text-xs font-bold uppercase tracking-wider text-emerald-300">
                   Zero Monthly Fees
                 </span>
               </div>
 
               <div class="space-y-2">
-                <h3 class="font-extrabold text-2xl sm:text-3xl text-white">
+                <h3 data-i18n="p1_title" class="font-extrabold text-2xl sm:text-3xl text-white">
                   $99 One-Time Launch
                 </h3>
-                <p class="text-sm sm:text-base text-purple-100/85 leading-relaxed">
+                <p data-i18n="p1_desc" class="text-sm sm:text-base text-purple-100/85 leading-relaxed">
                   Pay once, own it forever. Zero mandatory monthly fees.
                 </p>
               </div>
 
               <div class="flex items-baseline gap-2 pt-1">
                 <span class="font-extrabold text-5xl sm:text-6xl text-white">$99</span>
-                <span class="text-sm font-semibold text-purple-200">CAD one-time</span>
+                <span data-i18n="p1_unit" class="text-sm font-semibold text-purple-200">CAD one-time</span>
               </div>
 
               <ul class="space-y-4 pt-2 text-sm sm:text-base text-purple-50">
                 <li class="flex items-start gap-3">
-                  <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
-                  <span>Custom 1-page mobile site</span>
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <path d="m9 11 3 3L22 4" />
+                  </svg>
+                  <span data-i18n="p1_f1">Custom 1-page mobile site</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
-                  <span>Click-to-call &amp; quote form</span>
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <path d="m9 11 3 3L22 4" />
+                  </svg>
+                  <span data-i18n="p1_f2">Click-to-call &amp; quote form</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
-                  <span>Google Maps &amp; 5-star review showcase</span>
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <path d="m9 11 3 3L22 4" />
+                  </svg>
+                  <span data-i18n="p1_f3">Google Maps &amp; 5-star review showcase</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
-                  <span>Fast free hosting setup</span>
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <path d="m9 11 3 3L22 4" />
+                  </svg>
+                  <span data-i18n="p1_f4">Fast free hosting setup</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
-                  <span>48-hour free preview first</span>
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <path d="m9 11 3 3L22 4" />
+                  </svg>
+                  <span data-i18n="p1_f5">48-hour free preview first</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
-                  <span>100% yours forever</span>
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <path d="m9 11 3 3L22 4" />
+                  </svg>
+                  <span data-i18n="p1_f6">100% yours forever</span>
                 </li>
               </ul>
             </div>
@@ -554,6 +705,7 @@
             <button
               type="button"
               data-plan="$99 One-Time Launch"
+              data-i18n="p1_btn"
               class="choose-plan-btn w-full btn-glow-purple text-white font-bold text-base py-4 px-6 rounded-full text-center"
             >
               Choose $99 One-Time
@@ -564,52 +716,70 @@
           <div class="ios-glass ios-glass-hover rounded-[32px] p-8 sm:p-10 flex flex-col justify-between space-y-8 reveal" style="transition-delay: 0.1s;">
             <div class="space-y-6">
               <div class="flex flex-wrap items-center justify-between gap-2">
-                <span class="px-3.5 py-1 rounded-full bg-white/10 border border-white/25 text-xs font-bold uppercase tracking-wider text-purple-200">
+                <span data-i18n="p2_badge" class="px-3.5 py-1 rounded-full bg-white/10 border border-white/25 text-xs font-bold uppercase tracking-wider text-purple-200">
                   All-In Care Plan
                 </span>
-                <span class="text-xs font-semibold text-purple-200/80">
+                <span data-i18n="p2_tag" class="text-xs font-semibold text-purple-200/80">
                   100% Optional
                 </span>
               </div>
 
               <div class="space-y-2">
-                <h3 class="font-extrabold text-2xl sm:text-3xl text-white">
+                <h3 data-i18n="p2_title" class="font-extrabold text-2xl sm:text-3xl text-white">
                   $75 / Month
                 </h3>
-                <p class="text-sm sm:text-base text-purple-100/85 leading-relaxed">
+                <p data-i18n="p2_desc" class="text-sm sm:text-base text-purple-100/85 leading-relaxed">
                   Optional All-In Care Plan (Never Required).
                 </p>
               </div>
 
               <div class="flex items-baseline gap-2 pt-1">
                 <span class="font-extrabold text-5xl sm:text-6xl text-gradient-purple">$75</span>
-                <span class="text-sm font-semibold text-purple-200">CAD / month</span>
+                <span data-i18n="p2_unit" class="text-sm font-semibold text-purple-200">CAD / month</span>
               </div>
 
               <ul class="space-y-4 pt-2 text-sm sm:text-base text-purple-50">
                 <li class="flex items-start gap-3">
-                  <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-300 shrink-0 mt-0.5"></i>
-                  <span>Everything in the $99 launch</span>
+                  <svg class="w-5 h-5 text-purple-300 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <path d="m9 11 3 3L22 4" />
+                  </svg>
+                  <span data-i18n="p2_f1">Everything in the $99 launch</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-300 shrink-0 mt-0.5"></i>
-                  <span>Custom .ca or .com domain included</span>
+                  <svg class="w-5 h-5 text-purple-300 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <path d="m9 11 3 3L22 4" />
+                  </svg>
+                  <span data-i18n="p2_f2">Custom .ca or .com domain included</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-300 shrink-0 mt-0.5"></i>
-                  <span>Unlimited text &amp; photo updates</span>
+                  <svg class="w-5 h-5 text-purple-300 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <path d="m9 11 3 3L22 4" />
+                  </svg>
+                  <span data-i18n="p2_f3">Unlimited text &amp; photo updates</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-300 shrink-0 mt-0.5"></i>
-                  <span>Priority same-day Ottawa support</span>
+                  <svg class="w-5 h-5 text-purple-300 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <path d="m9 11 3 3L22 4" />
+                  </svg>
+                  <span data-i18n="p2_f4">Priority same-day Ottawa support</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-300 shrink-0 mt-0.5"></i>
-                  <span>Monthly speed &amp; uptime checks</span>
+                  <svg class="w-5 h-5 text-purple-300 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <path d="m9 11 3 3L22 4" />
+                  </svg>
+                  <span data-i18n="p2_f5">Monthly speed &amp; uptime checks</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-300 shrink-0 mt-0.5"></i>
-                  <span>Cancel anytime with zero lock-in</span>
+                  <svg class="w-5 h-5 text-purple-300 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <path d="m9 11 3 3L22 4" />
+                  </svg>
+                  <span data-i18n="p2_f6">Cancel anytime with zero lock-in</span>
                 </li>
               </ul>
             </div>
@@ -617,6 +787,7 @@
             <button
               type="button"
               data-plan="$99 Launch + $75/mo Care Plan"
+              data-i18n="p2_btn"
               class="choose-plan-btn w-full ios-glass hover:bg-white/15 border border-white/35 text-white font-bold text-base py-4 px-6 rounded-full text-center transition-all"
             >
               Choose $75/mo Care
@@ -628,20 +799,23 @@
     </section>
 
     <!-- =========================================================================
-         CONTACT / FREE PREVIEW FORM (FORMSPREE READY)
+         CONTACT / FREE PREVIEW FORM (FORMSPREE READY IN BOTH EN & FR)
     ========================================================================== -->
     <section id="free-preview" class="py-24 sm:py-32 section-border scroll-mt-24">
       <div class="max-w-4xl mx-auto px-6 sm:px-10">
         <div class="ios-glass rounded-[36px] p-8 sm:p-12 space-y-8 reveal">
           <div class="space-y-3 text-center sm:text-left">
             <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-fuchsia-300">
-              <i data-lucide="send" class="w-4 h-4"></i>
-              Zero Risk • No Payment Upfront
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m22 2-7 20-4-9-9-4Z" />
+                <path d="M22 2 11 13" />
+              </svg>
+              <span data-i18n="form_eyebrow">Zero Risk • No Payment Upfront</span>
             </span>
-            <h2 class="font-extrabold text-[clamp(1.9rem,3.4vw,2.75rem)] leading-tight text-white">
+            <h2 data-i18n="form_title" class="font-extrabold text-[clamp(1.9rem,3.4vw,2.75rem)] leading-tight text-white">
               Request Your Free Website Preview
             </h2>
-            <p class="text-base text-purple-100/85 leading-relaxed">
+            <p data-i18n="form_subtitle" class="text-base text-purple-100/85 leading-relaxed">
               Drop your details below and we will send over a custom working preview link within 48 hours.
             </p>
           </div>
@@ -650,7 +824,7 @@
           <form id="leadForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-6">
             <div class="grid sm:grid-cols-2 gap-6">
               <div class="space-y-2">
-                <label for="businessName" class="block text-xs font-bold uppercase tracking-wider text-purple-200">
+                <label for="businessName" data-i18n="form_biz_label" class="block text-xs font-bold uppercase tracking-wider text-purple-200">
                   Business Name *
                 </label>
                 <input
@@ -664,7 +838,7 @@
               </div>
 
               <div class="space-y-2">
-                <label for="contactInfo" class="block text-xs font-bold uppercase tracking-wider text-purple-200">
+                <label for="contactInfo" data-i18n="form_contact_label" class="block text-xs font-bold uppercase tracking-wider text-purple-200">
                   Phone or Email *
                 </label>
                 <input
@@ -679,7 +853,7 @@
             </div>
 
             <div class="space-y-2">
-              <label for="tradeService" class="block text-xs font-bold uppercase tracking-wider text-purple-200">
+              <label for="tradeService" data-i18n="form_trade_label" class="block text-xs font-bold uppercase tracking-wider text-purple-200">
                 Trade / Service *
               </label>
               <input
@@ -694,7 +868,7 @@
 
             <!-- Plan Radio Selection -->
             <div class="space-y-3">
-              <span class="block text-xs font-bold uppercase tracking-wider text-purple-200">
+              <span data-i18n="form_plan_label" class="block text-xs font-bold uppercase tracking-wider text-purple-200">
                 Preferred Option (Only After You Love Your Free Preview)
               </span>
               <div class="grid sm:grid-cols-2 gap-4">
@@ -707,8 +881,8 @@
                     class="w-4 h-4 accent-fuchsia-500"
                   />
                   <div>
-                    <div class="text-sm font-bold text-white">$99 One-Time Launch</div>
-                    <div class="text-xs text-purple-200/75">Pay once, own it forever</div>
+                    <div data-i18n="radio_1_title" class="text-sm font-bold text-white">$99 One-Time Launch</div>
+                    <div data-i18n="radio_1_sub" class="text-xs text-purple-200/75">Pay once, own it forever</div>
                   </div>
                 </label>
 
@@ -720,13 +894,14 @@
                     class="w-4 h-4 accent-fuchsia-500"
                   />
                   <div>
-                    <div class="text-sm font-bold text-white">$99 Launch + $75/mo Care Plan</div>
-                    <div class="text-xs text-purple-200/75">Domain, hosting &amp; unlimited edits</div>
+                    <div data-i18n="radio_2_title" class="text-sm font-bold text-white">$99 Launch + $75/mo Care Plan</div>
+                    <div data-i18n="radio_2_sub" class="text-xs text-purple-200/75">Domain, hosting &amp; unlimited edits</div>
                   </div>
                 </label>
               </div>
             </div>
 
+            <input type="hidden" id="formLanguageField" name="preferred_language" value="EN" />
             <input type="hidden" name="_subject" value="New Free Preview Request — NextDoor Digital" />
 
             <button
@@ -734,8 +909,10 @@
               id="submitBtn"
               class="w-full btn-glow-purple text-white font-bold text-base sm:text-lg py-4 px-8 rounded-full flex items-center justify-center gap-2.5"
             >
-              <span>Send My Free Preview Request</span>
-              <i data-lucide="sparkles" class="w-5 h-5"></i>
+              <span id="submitBtnText">Send My Free Preview Request</span>
+              <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+              </svg>
             </button>
 
             <!-- Inline Confirmation / Error Message Box -->
@@ -759,58 +936,340 @@
           onerror="this.style.display='none';"
           class="h-8 w-auto object-contain rounded-lg border border-purple-300/20 shadow-[0_0_14px_rgba(168,85,247,0.25)]"
         />
-        <span>NextDoor Digital <span class="text-purple-300 font-normal">• Built in Ottawa, ON</span></span>
+        <span>NextDoor Digital <span data-i18n="footer_built" class="text-purple-300 font-normal">• Built in Ottawa, ON</span></span>
       </div>
       <div>
-        © <span id="currentYear"></span> NextDoor Digital. All rights reserved.
+        © <span id="currentYear"></span> NextDoor Digital. <span data-i18n="footer_rights">All rights reserved.</span>
       </div>
     </div>
   </footer>
 
   <!-- =========================================================================
-       INTERACTIVE JAVASCRIPT
+       INTERACTIVE JAVASCRIPT (BILINGUAL EN/FR + CANVAS + SIMULATOR + FORMSPREE)
   ========================================================================== -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Initialize Lucide Icons
-      if (window.lucide) {
-        lucide.createIcons();
-      }
-
       // Set Current Year in Footer
       document.getElementById('currentYear').textContent = new Date().getFullYear();
 
       // -----------------------------------------------------------------------
-      // 1. COMPACT INTERACTIVE iPHONE SIMULATOR
+      // 1. AMBIENT HTML5 CANVAS PURPLE LIQUID GLOW & PARTICLE LAYER
+      // -----------------------------------------------------------------------
+      const canvas = document.getElementById('ambientCanvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width = (canvas.width = window.innerWidth);
+        let height = (canvas.height = window.innerHeight);
+
+        const particles = Array.from({ length: 28 }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 2.2 + 0.8,
+          vx: (Math.random() - 0.5) * 0.28,
+          vy: (Math.random() - 0.5) * 0.28,
+          alpha: Math.random() * 0.45 + 0.15,
+          hue: Math.random() > 0.5 ? '216, 180, 254' : '240, 171, 252',
+        }));
+
+        function resizeCanvas() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+
+        function animateCanvas() {
+          ctx.clearRect(0, 0, width, height);
+          for (const p of particles) {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0) p.x = width;
+            if (p.x > width) p.x = 0;
+            if (p.y < 0) p.y = height;
+            if (p.y > height) p.y = 0;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${p.hue}, ${p.alpha})`;
+            ctx.fill();
+          }
+          requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+      }
+
+      // -----------------------------------------------------------------------
+      // 2. BILINGUAL EN / FR TRANSLATION DICTIONARY (OTTAWA & GATINEAU)
+      // -----------------------------------------------------------------------
+      let currentLang = 'en';
+
+      const translations = {
+        en: {
+          page_title: 'NextDoor Digital | $99 Ottawa Web Design • Free Preview First',
+          nav_demo: 'Live Demo',
+          nav_savings: 'Savings',
+          nav_pricing: 'Pricing',
+          nav_cta: 'Free Preview',
+          hero_badge: 'Ottawa Local Web Design • Free Preview First',
+          hero_title: 'Websites That Turn Ottawa Searches Into <span class="text-gradient-purple">Booked Jobs</span>',
+          hero_subtitle:
+            'We design a custom, mobile-ready website preview for your business <strong class="text-white">100% free</strong> before you pay a cent. Own it forever for a <strong class="text-white">$99 one-time build</strong>—or add optional <strong class="text-white">$75/mo full care</strong> so you never lift a finger.',
+          hero_btn_primary: 'Get Your Free Preview',
+          hero_btn_secondary: 'Test Live Demo',
+          sim_label: 'Live Phone Simulator',
+          sim_placeholder: 'Type your business name...',
+          theme_dark: 'Purple Dark',
+          theme_light: 'Crisp Light',
+          trade_detailing: 'Auto Detailing',
+          trade_cleaning: 'House Cleaning',
+          trade_handyman: 'Handyman',
+          trade_landscaping: 'Landscaping',
+          sim_cta: 'Get Instant Quote • (613) 555-0194',
+          sim_footer: 'Live Mobile Preview by NextDoor Digital',
+          savings_eyebrow: 'Agency Savings Calculator',
+          savings_title: 'See How Much You Save vs. Monthly Web Agencies',
+          savings_subtitle:
+            'Most Ottawa agencies lock small businesses into $200–$500/month retainers for a basic site. Drag the sliders below to compare against our $99 one-time launch.',
+          slider_rate_label: 'What typical agencies charge per month',
+          slider_rate_min: '$150/mo',
+          slider_rate_mid: '$300/mo',
+          slider_rate_max: '$500/mo',
+          slider_time_label: 'Timeframe',
+          slider_time_min: '1 Year',
+          slider_time_mid: '3 Years',
+          slider_time_max: '5 Years',
+          rate_unit: '/ mo',
+          year_singular: 'Year',
+          year_plural: 'Years',
+          months_short: 'mos',
+          card_1yr_label: '1-Year Savings vs. $99',
+          card_1yr_sub: 'Competitor 1-yr cost:',
+          comp_total_label: (y) => `${y}-Year Competitor Total`,
+          total_savings_label: (y) => `Total ${y}-Year Savings`,
+          card_comp_sub: 'vs. NextDoor Digital:',
+          card_comp_once: '$99 once',
+          card_total_sub: 'Money that stays in your business',
+          pricing_eyebrow: 'Simple, Honest Pricing',
+          pricing_title: 'Own Your Site for $99 — Or Add Hands-Free Care',
+          pricing_subtitle:
+            'Every project starts with a free live preview built specifically for your Ottawa business. Only pay after you see it and approve.',
+          p1_badge: 'Most Popular',
+          p1_tag: 'Zero Monthly Fees',
+          p1_title: '$99 One-Time Launch',
+          p1_desc: 'Pay once, own it forever. Zero mandatory monthly fees.',
+          p1_unit: 'CAD one-time',
+          p1_f1: 'Custom 1-page mobile site',
+          p1_f2: 'Click-to-call & quote form',
+          p1_f3: 'Google Maps & 5-star review showcase',
+          p1_f4: 'Fast free hosting setup',
+          p1_f5: '48-hour free preview first',
+          p1_f6: '100% yours forever',
+          p1_btn: 'Choose $99 One-Time',
+          p2_badge: 'All-In Care Plan',
+          p2_tag: '100% Optional',
+          p2_title: '$75 / Month',
+          p2_desc: 'Optional All-In Care Plan (Never Required).',
+          p2_unit: 'CAD / month',
+          p2_f1: 'Everything in the $99 launch',
+          p2_f2: 'Custom .ca or .com domain included',
+          p2_f3: 'Unlimited text & photo updates',
+          p2_f4: 'Priority same-day Ottawa support',
+          p2_f5: 'Monthly speed & uptime checks',
+          p2_f6: 'Cancel anytime with zero lock-in',
+          p2_btn: 'Choose $75/mo Care',
+          form_eyebrow: 'Zero Risk • No Payment Upfront',
+          form_title: 'Request Your Free Website Preview',
+          form_subtitle:
+            'Drop your details below and we will send over a custom working preview link within 48 hours.',
+          form_biz_label: 'Business Name *',
+          form_biz_placeholder: 'e.g. Ottawa Pro Detailing',
+          form_contact_label: 'Phone or Email *',
+          form_contact_placeholder: 'e.g. (613) 555-0148 or you@gmail.com',
+          form_trade_label: 'Trade / Service *',
+          form_trade_placeholder: 'e.g. Auto Detailing, House Cleaning, Handyman, Landscaping',
+          form_plan_label: 'Preferred Option (Only After You Love Your Free Preview)',
+          radio_1_title: '$99 One-Time Launch',
+          radio_1_sub: 'Pay once, own it forever',
+          radio_2_title: '$99 Launch + $75/mo Care Plan',
+          radio_2_sub: 'Domain, hosting & unlimited edits',
+          form_submit: 'Send My Free Preview Request',
+          form_sending: 'Sending Request...',
+          form_demo_ok:
+            '<strong>Preview Test Confirmed!</strong> Your form works smoothly. Replace <code>YOUR_FORMSPREE_ID</code> in the form action with your real Formspree ID on GitHub to receive live client submissions.',
+          form_live_ok:
+            '<strong>Request Received!</strong> Thanks for reaching out to NextDoor Digital. We are building your free Ottawa website preview now and will send the link within 48 hours.',
+          form_err:
+            '<strong>Something went wrong.</strong> Please double-check your connection and try submitting again.',
+          footer_built: '• Built in Ottawa, ON',
+          footer_rights: 'All rights reserved.',
+        },
+        fr: {
+          page_title: 'NextDoor Digital | Sites Web Ottawa à 99 $ • Aperçu Gratuit',
+          nav_demo: 'Démo Live',
+          nav_savings: 'Économies',
+          nav_pricing: 'Tarifs',
+          nav_cta: 'Aperçu Gratuit',
+          hero_badge: 'Conception Web Ottawa–Gatineau • Aperçu Gratuit',
+          hero_title: 'Des Sites Web Qui Convertissent Vos Recherches en <span class="text-gradient-purple">Clients Payants</span>',
+          hero_subtitle:
+            'Nous créons un aperçu personnalisé et adapté au mobile pour votre entreprise <strong class="text-white">100 % gratuitement</strong> avant tout paiement. Gardez-le à vie pour <strong class="text-white">99 $ paiement unique</strong> — ou ajoutez le <strong class="text-white">forfait tout-inclus à 75 $/mois</strong>.',
+          hero_btn_primary: 'Obtenir Mon Aperçu Gratuit',
+          hero_btn_secondary: 'Tester la Démo',
+          sim_label: 'Simulateur Mobile Live',
+          sim_placeholder: 'Entrez le nom de votre entreprise...',
+          theme_dark: 'Violet Sombre',
+          theme_light: 'Clair Pur',
+          trade_detailing: 'Esthétique Auto',
+          trade_cleaning: 'Entretien Ménager',
+          trade_handyman: 'Homme à Tout Faire',
+          trade_landscaping: 'Aménagement Paysager',
+          sim_cta: 'Devis Instantané • (613) 555-0194',
+          sim_footer: 'Aperçu Mobile en Direct par NextDoor Digital',
+          savings_eyebrow: 'Calculateur d’Économies',
+          savings_title: 'Voyez Combien Vous Économisez Face aux Agences Mensuelles',
+          savings_subtitle:
+            'La plupart des agences d’Ottawa–Gatineau facturent de 200 $ à 500 $/mois. Déplacez les curseurs pour comparer avec notre lancement unique à 99 $.',
+          slider_rate_label: 'Tarif mensuel d’une agence classique',
+          slider_rate_min: '150 $/mois',
+          slider_rate_mid: '300 $/mois',
+          slider_rate_max: '500 $/mois',
+          slider_time_label: 'Durée',
+          slider_time_min: '1 An',
+          slider_time_mid: '3 Ans',
+          slider_time_max: '5 Ans',
+          rate_unit: '/ mois',
+          year_singular: 'An',
+          year_plural: 'Ans',
+          months_short: 'mois',
+          card_1yr_label: 'Économies sur 1 an vs 99 $',
+          card_1yr_sub: 'Coût agence sur 1 an :',
+          comp_total_label: (y) => `Total Agence sur ${y} ${y === 1 ? 'An' : 'Ans'}`,
+          total_savings_label: (y) => `Économies Totales (${y} ${y === 1 ? 'An' : 'Ans'})`,
+          card_comp_sub: 'vs NextDoor Digital :',
+          card_comp_once: '99 $ une fois',
+          card_total_sub: 'De l’argent qui reste dans votre entreprise',
+          pricing_eyebrow: 'Tarification Simple et Transparente',
+          pricing_title: 'Votre Site à Vie pour 99 $ — Ou Avec Gestion Complète',
+          pricing_subtitle:
+            'Chaque projet débute par un aperçu gratuit conçu pour votre entreprise d’Ottawa ou Gatineau. Payez uniquement si vous êtes satisfait.',
+          p1_badge: 'Le Plus Populaire',
+          p1_tag: 'Zéro Frais Mensuels',
+          p1_title: 'Lancement Unique 99 $',
+          p1_desc: 'Payez une seule fois, possédez-le à vie. Aucun frais mensuel obligatoire.',
+          p1_unit: 'CAD une fois',
+          p1_f1: 'Site mobile sur mesure (1 page)',
+          p1_f2: 'Bouton d’appel direct et formulaire de devis',
+          p1_f3: 'Intégration Google Maps et avis 5 étoiles',
+          p1_f4: 'Configuration d’hébergement rapide gratuit',
+          p1_f5: 'Aperçu gratuit livré en 48 heures',
+          p1_f6: '100 % à vous pour toujours',
+          p1_btn: 'Choisir 99 $ Une Fois',
+          p2_badge: 'Forfait Tranquillité',
+          p2_tag: '100 % Optionnel',
+          p2_title: '75 $ / Mois',
+          p2_desc: 'Forfait d’entretien tout-inclus optionnel (jamais obligatoire).',
+          p2_unit: 'CAD / mois',
+          p2_f1: 'Tout ce qui est inclus dans le lancement à 99 $',
+          p2_f2: 'Nom de domaine .ca ou .com inclus',
+          p2_f3: 'Mises à jour illimitées (textes et photos)',
+          p2_f4: 'Support prioritaire le jour même à Ottawa–Gatineau',
+          p2_f5: 'Vérifications mensuelles de vitesse et disponibilité',
+          p2_f6: 'Annulez à tout moment sans engagement',
+          p2_btn: 'Choisir le Soin à 75 $/mois',
+          form_eyebrow: 'Zéro Risque • Aucun Paiement Initial',
+          form_title: 'Demandez Votre Aperçu Web Gratuit',
+          form_subtitle:
+            'Entrez vos coordonnées ci-dessous et recevez un lien d’aperçu fonctionnel sur mesure sous 48 heures.',
+          form_biz_label: 'Nom de l’Entreprise *',
+          form_biz_placeholder: 'ex. Esthétique Auto Capitale',
+          form_contact_label: 'Téléphone ou Courriel *',
+          form_contact_placeholder: 'ex. (613) 555-0148 ou vous@gmail.com',
+          form_trade_label: 'Métier / Service *',
+          form_trade_placeholder: 'ex. Esthétique Auto, Ménage, Rénovation, Paysagement',
+          form_plan_label: 'Option Préférée (Uniquement Après Avoir Aimé Votre Aperçu)',
+          radio_1_title: 'Lancement Unique 99 $',
+          radio_1_sub: 'Payez une fois, possédez-le à vie',
+          radio_2_title: 'Lancement 99 $ + Soin 75 $/mois',
+          radio_2_sub: 'Domaine, hébergement et modifications illimitées',
+          form_submit: 'Envoyer Ma Demande d’Aperçu Gratuit',
+          form_sending: 'Envoi en cours...',
+          form_demo_ok:
+            '<strong>Test d’aperçu confirmé !</strong> Votre formulaire fonctionne parfaitement. Remplacez <code>YOUR_FORMSPREE_ID</code> dans le code sur GitHub par votre vrai identifiant Formspree.',
+          form_live_ok:
+            '<strong>Demande reçue !</strong> Merci d’avoir contacté NextDoor Digital. Nous préparons votre aperçu gratuit et vous enverrons le lien sous 48 heures.',
+          form_err:
+            '<strong>Une erreur est survenue.</strong> Veuillez vérifier votre connexion et réessayer.',
+          footer_built: '• Conçu à Ottawa, ON',
+          footer_rights: 'Tous droits réservés.',
+        },
+      };
+
+      // -----------------------------------------------------------------------
+      // 3. COMPACT INTERACTIVE iPHONE SIMULATOR (BILINGUAL PRESETS)
       // -----------------------------------------------------------------------
       const tradePresets = {
         detailing: {
-          defaultName: 'Capital Shine Detailing',
-          reviews: '4.9 (84 Google Reviews)',
-          headline: 'Mobile Interior & Exterior Detailing at Your Driveway',
-          subtext: 'Serving Kanata, Barrhaven, Orleans & Downtown Ottawa. Same-week bookings available.',
-          pills: ['✓ Full Interior Reset', '✓ Ceramic Sealant'],
+          en: {
+            defaultName: 'Capital Shine Detailing',
+            reviews: '4.9 (84 Google Reviews)',
+            headline: 'Mobile Interior & Exterior Detailing at Your Driveway',
+            subtext: 'Serving Kanata, Barrhaven, Orleans & Downtown Ottawa. Same-week bookings available.',
+            pills: ['✓ Full Interior Reset', '✓ Ceramic Sealant'],
+          },
+          fr: {
+            defaultName: 'Esthétique Éclat Capitale',
+            reviews: '4.9 (84 Avis Google)',
+            headline: 'Esthétique Auto Intérieure & Extérieure à Domicile',
+            subtext: 'Service à Ottawa, Gatineau, Kanata et Orléans. Rendez-vous disponibles cette semaine.',
+            pills: ['✓ Nettoyage Intérieur', '✓ Scellant Céramique'],
+          },
         },
         cleaning: {
-          defaultName: 'Rideau Sparkle Cleaning',
-          reviews: '5.0 (112 Google Reviews)',
-          headline: 'Trusted Ottawa Home & Deep Cleaning Specialists',
-          subtext: 'Eco-friendly supplies, insured local cleaners, and instant flat-rate quotes across Ottawa.',
-          pills: ['✓ Deep Home Clean', '✓ Move-In / Move-Out'],
+          en: {
+            defaultName: 'Rideau Sparkle Cleaning',
+            reviews: '5.0 (112 Google Reviews)',
+            headline: 'Trusted Ottawa Home & Deep Cleaning Specialists',
+            subtext: 'Eco-friendly supplies, insured local cleaners, and instant flat-rate quotes across Ottawa.',
+            pills: ['✓ Deep Home Clean', '✓ Move-In / Move-Out'],
+          },
+          fr: {
+            defaultName: 'Entretien Ménager Rideau',
+            reviews: '5.0 (112 Avis Google)',
+            headline: 'Spécialistes du Grand Ménage Résidentiel à Ottawa',
+            subtext: 'Produits écologiques, équipe assurée et soumissions rapides à tarif fixe.',
+            pills: ['✓ Grand Ménage', '✓ Déménagement'],
+          },
         },
         handyman: {
-          defaultName: '613 Reliable Handyman',
-          reviews: '4.9 (67 Google Reviews)',
-          headline: 'Fast, Clean Home Repairs & Mounting Done Right',
-          subtext: 'Drywall, TV mounting, fixtures & carpentry across Nepean, Glebe & Westboro.',
-          pills: ['✓ Drywall & Paint', '✓ TV & Shelf Mount'],
+          en: {
+            defaultName: '613 Reliable Handyman',
+            reviews: '4.9 (67 Google Reviews)',
+            headline: 'Fast, Clean Home Repairs & Mounting Done Right',
+            subtext: 'Drywall, TV mounting, fixtures & carpentry across Nepean, Glebe & Westboro.',
+            pills: ['✓ Drywall & Paint', '✓ TV & Shelf Mount'],
+          },
+          fr: {
+            defaultName: 'Rénovations Express 613',
+            reviews: '4.9 (67 Avis Google)',
+            headline: 'Réparations Résidentielles Rapides et Soignées',
+            subtext: 'Gypse, peinture, montage TV et menuiserie à Ottawa et Gatineau.',
+            pills: ['✓ Gypse & Peinture', '✓ Montage Mural'],
+          },
         },
         landscaping: {
-          defaultName: 'ByWard Lawn & Yard Care',
-          reviews: '4.8 (95 Google Reviews)',
-          headline: 'Weekly Lawn Maintenance, Sod & Seasonal Cleanups',
-          subtext: 'Reliable Ottawa crews keeping your curb appeal sharp all spring, summer & fall.',
-          pills: ['✓ Weekly Mowing', '✓ Spring/Fall Cleanup'],
+          en: {
+            defaultName: 'ByWard Lawn & Yard Care',
+            reviews: '4.8 (95 Google Reviews)',
+            headline: 'Weekly Lawn Maintenance, Sod & Seasonal Cleanups',
+            subtext: 'Reliable Ottawa crews keeping your curb appeal sharp all spring, summer & fall.',
+            pills: ['✓ Weekly Mowing', '✓ Spring/Fall Cleanup'],
+          },
+          fr: {
+            defaultName: 'Paysagement ByWard',
+            reviews: '4.8 (95 Avis Google)',
+            headline: 'Tonte de Pelouse Hebdomadaire & Nettoyage Saisonnier',
+            subtext: 'Équipes fiables dans la région de la capitale pour un terrain impeccable.',
+            pills: ['✓ Tonte Hebdomadaire', '✓ Nettoyage Printemps'],
+          },
         },
       };
 
@@ -823,15 +1282,19 @@
       const simHeadline = document.getElementById('simHeadline');
       const simSubtext = document.getElementById('simSubtext');
       const simServicesList = document.getElementById('simServicesList');
+      const simCtaText = document.getElementById('simCtaText');
+      const simFooterCaption = document.getElementById('simFooterCaption');
       const tradeButtons = document.querySelectorAll('.trade-btn');
 
       function updateSimulatorContent() {
-        const preset = tradePresets[activeTrade];
+        const preset = tradePresets[activeTrade][currentLang];
         const customName = simBusinessInput.value.trim();
         simBizTitle.textContent = customName || preset.defaultName;
         simReviewCount.textContent = preset.reviews;
         simHeadline.textContent = preset.headline;
         simSubtext.textContent = preset.subtext;
+        simCtaText.textContent = translations[currentLang].sim_cta;
+        simFooterCaption.textContent = translations[currentLang].sim_footer;
 
         const pillClasses = isPhoneLightMode
           ? 'rounded-xl px-3 py-2 bg-purple-100/80 border border-purple-200 text-purple-950'
@@ -862,24 +1325,29 @@
       const simHeroCard = document.getElementById('simHeroCard');
       const simBadge = document.getElementById('simBadge');
 
+      function updatePhoneThemeLabel() {
+        phoneThemeLabel.textContent = isPhoneLightMode
+          ? translations[currentLang].theme_light
+          : translations[currentLang].theme_dark;
+      }
+
       phoneThemeToggle.addEventListener('click', () => {
         isPhoneLightMode = !isPhoneLightMode;
         if (isPhoneLightMode) {
-          phoneThemeLabel.textContent = 'Crisp Light';
           phoneScreen.className = 'rounded-[36px] overflow-hidden border border-purple-200 transition-colors duration-300 bg-gradient-to-b from-white via-purple-50 to-purple-100/70 text-slate-900';
           simHeroCard.className = 'rounded-2xl p-4 bg-white border border-purple-200/80 shadow-sm space-y-2.5';
           simBadge.className = 'text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-purple-100 border border-purple-300 text-purple-800';
         } else {
-          phoneThemeLabel.textContent = 'Purple Dark';
           phoneScreen.className = 'rounded-[36px] overflow-hidden border border-white/20 transition-colors duration-300 bg-gradient-to-b from-[#1b0b38] via-[#130829] to-[#0b0518] text-white';
           simHeroCard.className = 'rounded-2xl p-4 bg-white/10 border border-white/20 space-y-2.5';
           simBadge.className = 'text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-purple-500/30 border border-purple-300/40 text-purple-200';
         }
+        updatePhoneThemeLabel();
         updateSimulatorContent();
       });
 
       // -----------------------------------------------------------------------
-      // 2. INTERACTIVE AGENCY SAVINGS CALCULATOR
+      // 4. INTERACTIVE AGENCY SAVINGS CALCULATOR
       // -----------------------------------------------------------------------
       const agencyRateSlider = document.getElementById('agencyRateSlider');
       const timeframeSlider = document.getElementById('timeframeSlider');
@@ -892,11 +1360,15 @@
       const totalSavingsLabelOutput = document.getElementById('totalSavingsLabelOutput');
       const multiYearSavingsOutput = document.getElementById('multiYearSavingsOutput');
 
-      function formatCAD(amount) {
+      function formatCurrency(amount) {
+        if (currentLang === 'fr') {
+          return amount.toLocaleString('fr-CA') + ' $';
+        }
         return '$' + amount.toLocaleString('en-CA');
       }
 
       function calculateSavings() {
+        const t = translations[currentLang];
         const monthlyRate = parseInt(agencyRateSlider.value, 10);
         const years = parseInt(timeframeSlider.value, 10);
         const months = years * 12;
@@ -907,24 +1379,84 @@
         const multiYearAgencyCost = monthlyRate * months;
         const multiYearSavings = multiYearAgencyCost - 99;
 
-        agencyRateOutput.textContent = `${formatCAD(monthlyRate)} / mo`;
-        timeframeOutput.textContent = `${years} ${years === 1 ? 'Year' : 'Years'} (${months} mos)`;
+        agencyRateOutput.textContent = `${formatCurrency(monthlyRate)} ${t.rate_unit}`;
+        timeframeOutput.textContent = `${years} ${years === 1 ? t.year_singular : t.year_plural} (${months} ${t.months_short})`;
 
-        oneYearCompetitorOutput.textContent = formatCAD(oneYearAgencyCost);
-        oneYearSavingsOutput.textContent = formatCAD(oneYearSavings);
+        oneYearCompetitorOutput.textContent = formatCurrency(oneYearAgencyCost);
+        oneYearSavingsOutput.textContent = formatCurrency(oneYearSavings);
 
-        multiYearLabelOutput.textContent = `${years}-Year Competitor Total`;
-        multiYearCompetitorOutput.textContent = formatCAD(multiYearAgencyCost);
-        totalSavingsLabelOutput.textContent = `Total ${years}-Year Savings`;
-        multiYearSavingsOutput.textContent = formatCAD(multiYearSavings);
+        multiYearLabelOutput.textContent = t.comp_total_label(years);
+        multiYearCompetitorOutput.textContent = formatCurrency(multiYearAgencyCost);
+        totalSavingsLabelOutput.textContent = t.total_savings_label(years);
+        multiYearSavingsOutput.textContent = formatCurrency(multiYearSavings);
       }
 
       agencyRateSlider.addEventListener('input', calculateSavings);
       timeframeSlider.addEventListener('input', calculateSavings);
-      calculateSavings();
 
       // -----------------------------------------------------------------------
-      // 3. PRICING BUTTONS -> SCROLL TO FORM & SELECT RADIO OPTION
+      // 5. APPLY LANGUAGE SWITCHER (EN / FR)
+      // -----------------------------------------------------------------------
+      const langEnBtn = document.getElementById('langEnBtn');
+      const langFrBtn = document.getElementById('langFrBtn');
+      const formLanguageField = document.getElementById('formLanguageField');
+      const submitBtnText = document.getElementById('submitBtnText');
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+
+        document.documentElement.lang = lang;
+        document.title = t.page_title;
+        if (formLanguageField) {
+          formLanguageField.value = lang.toUpperCase();
+        }
+
+        // Update Toggle Button Active Styles
+        if (lang === 'en') {
+          langEnBtn.className = 'px-2.5 sm:px-3 py-1.5 rounded-full bg-purple-500/70 text-white shadow-sm transition-all';
+          langFrBtn.className = 'px-2.5 sm:px-3 py-1.5 rounded-full text-purple-200/80 hover:text-white transition-all';
+        } else {
+          langFrBtn.className = 'px-2.5 sm:px-3 py-1.5 rounded-full bg-purple-500/70 text-white shadow-sm transition-all';
+          langEnBtn.className = 'px-2.5 sm:px-3 py-1.5 rounded-full text-purple-200/80 hover:text-white transition-all';
+        }
+
+        // Translate Plain Text Elements
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.getAttribute('data-i18n');
+          if (t[key]) {
+            el.textContent = t[key];
+          }
+        });
+
+        // Translate Rich HTML Elements
+        document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+          const key = el.getAttribute('data-i18n-html');
+          if (t[key]) {
+            el.innerHTML = t[key];
+          }
+        });
+
+        // Update Input Placeholders & Submit Button
+        simBusinessInput.placeholder = t.sim_placeholder;
+        document.getElementById('businessName').placeholder = t.form_biz_placeholder;
+        document.getElementById('contactInfo').placeholder = t.form_contact_placeholder;
+        document.getElementById('tradeService').placeholder = t.form_trade_placeholder;
+        submitBtnText.textContent = t.form_submit;
+
+        updatePhoneThemeLabel();
+        updateSimulatorContent();
+        calculateSavings();
+      }
+
+      langEnBtn.addEventListener('click', () => setLanguage('en'));
+      langFrBtn.addEventListener('click', () => setLanguage('fr'));
+
+      // Initialize Default English State
+      setLanguage('en');
+
+      // -----------------------------------------------------------------------
+      // 6. PRICING BUTTONS -> SCROLL TO FORM & SELECT RADIO OPTION
       // -----------------------------------------------------------------------
       document.querySelectorAll('.choose-plan-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
@@ -941,7 +1473,7 @@
       });
 
       // -----------------------------------------------------------------------
-      // 4. SMOOTH SCROLL-REVEAL FADE-UP ANIMATIONS
+      // 7. SMOOTH SCROLL-REVEAL FADE-UP ANIMATIONS
       // -----------------------------------------------------------------------
       const revealObserver = new IntersectionObserver(
         (entries) => {
@@ -957,7 +1489,7 @@
       document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
       // -----------------------------------------------------------------------
-      // 5. FORMSPREE AJAX SUBMISSION WITH PLACEHOLDER FALLBACK
+      // 8. FORMSPREE AJAX SUBMISSION WITH BILINGUAL FEEDBACK
       // -----------------------------------------------------------------------
       const leadForm = document.getElementById('leadForm');
       const submitBtn = document.getElementById('submitBtn');
@@ -965,11 +1497,12 @@
 
       leadForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        const t = translations[currentLang];
         const actionUrl = leadForm.getAttribute('action') || '';
         const originalBtnHTML = submitBtn.innerHTML;
 
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span>Sending Request...</span>';
+        submitBtn.innerHTML = `<span>${t.form_sending}</span>`;
         formFeedback.classList.add('hidden');
 
         // Graceful handling when placeholder ID is still present during preview testing
@@ -977,11 +1510,14 @@
           setTimeout(() => {
             formFeedback.className =
               'rounded-2xl p-5 text-sm sm:text-base leading-relaxed bg-emerald-500/20 border border-emerald-400/40 text-emerald-100';
-            formFeedback.innerHTML =
-              '<strong>Preview Test Confirmed!</strong> Your form works smoothly. Replace <code>YOUR_FORMSPREE_ID</code> in the form action with your real Formspree ID on GitHub to receive live client submissions.';
+            formFeedback.innerHTML = t.form_demo_ok;
             leadForm.reset();
+            if (formLanguageField) {
+              formLanguageField.value = currentLang.toUpperCase();
+            }
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalBtnHTML;
+            document.getElementById('submitBtnText').textContent = translations[currentLang].form_submit;
           }, 450);
           return;
         }
@@ -999,20 +1535,22 @@
           if (response.ok) {
             formFeedback.className =
               'rounded-2xl p-5 text-sm sm:text-base leading-relaxed bg-emerald-500/20 border border-emerald-400/40 text-emerald-100';
-            formFeedback.innerHTML =
-              '<strong>Request Received!</strong> Thanks for reaching out to NextDoor Digital. We are building your free Ottawa website preview now and will send the link within 48 hours.';
+            formFeedback.innerHTML = t.form_live_ok;
             leadForm.reset();
+            if (formLanguageField) {
+              formLanguageField.value = currentLang.toUpperCase();
+            }
           } else {
             throw new Error('Submission failed');
           }
         } catch (err) {
           formFeedback.className =
             'rounded-2xl p-5 text-sm sm:text-base leading-relaxed bg-rose-500/20 border border-rose-400/40 text-rose-100';
-          formFeedback.innerHTML =
-            '<strong>Something went wrong.</strong> Please double-check your connection and try submitting again.';
+          formFeedback.innerHTML = t.form_err;
         } finally {
           submitBtn.disabled = false;
           submitBtn.innerHTML = originalBtnHTML;
+          document.getElementById('submitBtnText').textContent = translations[currentLang].form_submit;
         }
       });
     });
