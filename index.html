@@ -2,8 +2,15 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0b0518" />
   <title>NextDoor Digital | $99 Ottawa Web Design • Free Preview First</title>
+
+  <!-- Browser Favicon & Apple Home Screen App Icon -->
+  <link rel="icon" type="image/jpeg" href="logo.jpeg" />
+  <link rel="apple-touch-icon" href="logo.jpeg" />
 
   <!-- Plus Jakarta Sans Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -166,11 +173,18 @@
   <!-- =========================================================================
        STICKY iOS GLASS NAVBAR
   ========================================================================== -->
-  <header class="sticky top-0 z-50 px-4 sm:px-8 pt-4">
-    <div class="max-w-7xl mx-auto ios-glass rounded-full px-5 sm:px-8 py-3.5 flex items-center justify-between gap-4">
-      <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-2.5 group">
-        <span class="w-9 h-9 rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-700 flex items-center justify-center border border-white/40 shadow-lg">
+  <header class="sticky top-0 z-50 px-4 sm:px-8 pt-[max(1rem,env(safe-area-inset-top))]">
+    <div class="max-w-7xl mx-auto ios-glass rounded-full px-5 sm:px-8 py-3 flex items-center justify-between gap-4">
+      <!-- Brand Logo (Integrates logo.jpeg with seamless fallback) -->
+      <a href="#" class="flex items-center gap-3 group">
+        <img
+          src="logo.jpeg"
+          alt="NextDoor Digital Logo"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          class="h-10 sm:h-11 w-auto max-w-[175px] object-contain rounded-xl border border-purple-300/25 shadow-[0_0_20px_rgba(168,85,247,0.35)]"
+        />
+        <!-- Fallback Icon Badge if logo.jpeg isn't in the current preview folder -->
+        <span style="display: none;" class="w-9 h-9 rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-700 items-center justify-center border border-white/40 shadow-lg">
           <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
         </span>
         <span class="font-extrabold text-base sm:text-lg tracking-tight text-white">
@@ -738,8 +752,14 @@
   ========================================================================== -->
   <footer class="relative z-10 py-10 section-border">
     <div class="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-purple-200/75">
-      <div class="font-bold text-white">
-        NextDoor Digital <span class="text-purple-300 font-normal">• Built in Ottawa, ON</span>
+      <div class="flex items-center gap-3 font-bold text-white">
+        <img
+          src="logo.jpeg"
+          alt="NextDoor Digital Logo"
+          onerror="this.style.display='none';"
+          class="h-8 w-auto object-contain rounded-lg border border-purple-300/20 shadow-[0_0_14px_rgba(168,85,247,0.25)]"
+        />
+        <span>NextDoor Digital <span class="text-purple-300 font-normal">• Built in Ottawa, ON</span></span>
       </div>
       <div>
         © <span id="currentYear"></span> NextDoor Digital. All rights reserved.
