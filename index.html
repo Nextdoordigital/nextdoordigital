@@ -1,853 +1,1000 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NextDoor Digital | $99 One-Page Websites in Ottawa — Free Preview First</title>
-  <meta name="description" content="Ottawa's local web studio for service businesses. Get a free preview of a custom, mobile-ready $99 one-page website with zero monthly fees." />
+  <title>NextDoor Digital | $99 Ottawa Web Design • Free Preview First</title>
 
-  <!-- Google Fonts: Plus Jakarta Sans (Display), Inter (Body), JetBrains Mono (Accents) -->
+  <!-- Plus Jakarta Sans Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Plus Jakarta Sans', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
           },
           colors: {
-            obsidian: '#07040F',
-            royal: '#7C3AED',
-            electric: '#8B5CF6',
-            orchid: '#A855F7',
+            voidPurple: '#0b0518',
+            deepRoyal: '#15092b',
           },
-          animation: {
-            'float-gentle': 'floatGentle 7s ease-in-out infinite',
-            'orb-slow': 'orbSlow 18s ease-in-out infinite alternate',
-          },
-          keyframes: {
-            floatGentle: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-8px)' },
-            },
-            orbSlow: {
-              '0%': { transform: 'translate(0px, 0px) scale(1)' },
-              '100%': { transform: 'translate(35px, -25px) scale(1.06)' },
-            }
-          }
-        }
-      }
+        },
+      },
     };
   </script>
 
   <style>
-    /* ==========================================================================
-       1. BASE OBSIDIAN-VIOLET PALETTE & FLUID SCALING (360px PHONE -> 4K TV)
-    ========================================================================== */
-    :root {
-      --bg-obsidian: #07040F;
-    }
-
-    html {
-      font-size: clamp(16px, 0.35vw + 14.5px, 19px);
-    }
-
+    /* Base Deep Royal Purple Canvas */
     body {
-      background-color: var(--bg-obsidian);
-      color: #F8FAFC;
-      line-height: 1.7;
+      background: linear-gradient(160deg, #0b0518 0%, #15092b 48%, #0d061f 100%);
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
       overflow-x: hidden;
-      min-height: 100vh;
     }
 
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #07040F;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, #7C3AED, #A855F7);
-      border-radius: 9999px;
-    }
-
-    /* ==========================================================================
-       2. APPLE iOS FROSTED GLASSMORPHISM (HIGH-CONTRAST REFRACTION)
-    ========================================================================== */
+    /* True Apple iOS Frosted Glassmorphism */
     .ios-glass {
-      position: relative;
-      background: linear-gradient(
-        145deg,
-        rgba(255, 255, 255, 0.08) 0%,
-        rgba(139, 92, 246, 0.09) 50%,
-        rgba(12, 6, 28, 0.55) 100%
-      );
-      backdrop-filter: blur(28px) saturate(180%);
-      -webkit-backdrop-filter: blur(28px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-top: 1px solid rgba(255, 255, 255, 0.36);
-      border-left: 1px solid rgba(255, 255, 255, 0.22);
-      box-shadow:
-        inset 0 1px 1px rgba(255, 255, 255, 0.28),
-        0 24px 60px -15px rgba(3, 1, 10, 0.85);
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.35s ease;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-top: 1px solid rgba(255, 255, 255, 0.42);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+    }
+
+    .ios-glass-hover {
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  background 0.35s ease,
+                  border-color 0.35s ease,
+                  box-shadow 0.35s ease;
     }
 
     .ios-glass-hover:hover {
+      background: rgba(255, 255, 255, 0.11);
+      border-color: rgba(255, 255, 255, 0.35);
+      border-top-color: rgba(255, 255, 255, 0.58);
       transform: translateY(-4px);
-      border-top-color: rgba(255, 255, 255, 0.55);
-      border-color: rgba(192, 132, 252, 0.35);
-      box-shadow:
-        inset 0 1px 2px rgba(255, 255, 255, 0.42),
-        0 30px 70px -15px rgba(124, 58, 237, 0.35);
+      box-shadow: 0 32px 64px rgba(0, 0, 0, 0.55), 0 0 40px rgba(168, 85, 247, 0.2);
     }
 
-    /* Compact iPhone Inner Glass Widgets (Dark Purple vs Clean Light Mode) */
-    .iphone-widget-dark {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(168, 85, 247, 0.14));
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-top: 1px solid rgba(255, 255, 255, 0.45);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
-    }
-
-    .iphone-widget-light {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(243, 232, 255, 0.82));
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(139, 92, 246, 0.2);
-      border-top: 1px solid rgba(255, 255, 255, 0.95);
-      box-shadow: 0 6px 16px rgba(88, 28, 135, 0.1);
-    }
-
-    /* Signature Luxury Purple Gradient Text */
-    .text-purple-luxury {
-      background: linear-gradient(135deg, #FFFFFF 0%, #E9D5FF 40%, #C084FC 78%, #A855F7 100%);
+    /* Signature Purple-to-Pink Luxury Gradient Text */
+    .text-gradient-purple {
+      background: linear-gradient(135deg, #e879f9 0%, #c084fc 45%, #818cf8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    /* Primary Royal Purple Pill Button */
-    .btn-purple-pill {
-      background: linear-gradient(135deg, #7C3AED 0%, #9333EA 55%, #A855F7 100%);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      box-shadow:
-        inset 0 1px 1px rgba(255, 255, 255, 0.5),
-        0 12px 32px -6px rgba(124, 58, 237, 0.65);
-      transition: all 0.25s ease;
+    /* Glowing Primary Action Pill */
+    .btn-glow-purple {
+      background: linear-gradient(135deg, #9333ea 0%, #c026d3 50%, #7c3aed 100%);
+      border-top: 1px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 0 12px 32px rgba(147, 51, 234, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
     }
 
-    .btn-purple-pill:hover {
+    .btn-glow-purple:hover {
       transform: translateY(-2px);
-      box-shadow:
-        inset 0 1px 2px rgba(255, 255, 255, 0.7),
-        0 18px 38px -4px rgba(168, 85, 247, 0.8);
-      filter: brightness(1.07);
+      box-shadow: 0 18px 42px rgba(192, 38, 211, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+      filter: brightness(1.08);
     }
 
-    /* Subtle Hairline Section Divider Fade */
-    .section-divider {
-      position: relative;
-    }
-    .section-divider::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 8%;
-      right: 8%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(192, 132, 252, 0.25), transparent);
+    /* Ambient Glowing Orbs for Glass Refraction */
+    .ambient-orb {
+      position: fixed;
+      border-radius: 9999px;
+      filter: blur(110px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.65;
     }
 
-    /* Custom Range Sliders for Interactive Savings Calculator */
+    /* Custom Range Sliders */
     input[type="range"].purple-slider {
       -webkit-appearance: none;
       appearance: none;
-      height: 8px;
+      height: 10px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       outline: none;
+      cursor: pointer;
     }
+
     input[type="range"].purple-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #FFFFFF, #D8B4FE);
-      border: 2px solid #7C3AED;
-      box-shadow: 0 0 16px rgba(168, 85, 247, 0.95);
+      background: linear-gradient(135deg, #f0abfc, #9333ea);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 18px rgba(217, 70, 239, 0.85);
       cursor: pointer;
       transition: transform 0.15s ease;
     }
+
     input[type="range"].purple-slider::-webkit-slider-thumb:hover {
       transform: scale(1.15);
     }
 
-    /* Smooth Scroll-Reveal Fade-Up Animations */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(22px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    input[type="range"].purple-slider::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f0abfc, #9333ea);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 18px rgba(217, 70, 239, 0.85);
+      cursor: pointer;
     }
 
-    .hero-animate {
-      opacity: 0;
-      animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
+    /* Smooth Scroll-Reveal Fade-Up */
     .reveal {
       opacity: 0;
-      transform: translateY(26px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(28px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
+
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* Subtle Section Divider */
+    .section-border {
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
+    }
   </style>
 </head>
-<body class="antialiased selection:bg-purple-500/40 selection:text-white">
+<body class="antialiased selection:bg-fuchsia-500 selection:text-white relative">
+
+  <!-- Ambient Royal Purple / Magenta / Indigo Orbs Refracting Through Glass -->
+  <div class="ambient-orb w-[420px] h-[420px] bg-purple-600/50 -top-24 -left-24"></div>
+  <div class="ambient-orb w-[500px] h-[500px] bg-fuchsia-600/35 top-[28%] -right-32"></div>
+  <div class="ambient-orb w-[460px] h-[460px] bg-indigo-600/45 top-[62%] -left-28"></div>
+  <div class="ambient-orb w-[440px] h-[440px] bg-violet-600/40 bottom-10 right-10"></div>
 
   <!-- =========================================================================
-       AMBIENT PURPLE / INDIGO REFRACTION ORBS (FLOATING BEHIND GLASS)
+       STICKY iOS GLASS NAVBAR
   ========================================================================== -->
-  <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-[#07040F] via-[#0D0620] to-[#07040F]"></div>
-    <div class="absolute -top-28 -left-24 w-[500px] h-[500px] rounded-full bg-[#7C3AED]/30 blur-[130px] animate-orb-slow"></div>
-    <div class="absolute top-20 right-0 sm:right-16 w-[460px] h-[460px] rounded-full bg-[#A855F7]/25 blur-[130px] animate-orb-slow" style="animation-delay: -6s;"></div>
-    <div class="absolute top-[48%] left-1/3 w-[520px] h-[420px] rounded-full bg-[#4F46E5]/20 blur-[140px]"></div>
-    <div class="absolute bottom-10 right-1/4 w-[480px] h-[400px] rounded-full bg-[#7C3AED]/25 blur-[130px]"></div>
-  </div>
-
-  <!-- =========================================================================
-       MINIMAL STICKY GLASS NAVIGATION BAR
-  ========================================================================== -->
-  <header class="sticky top-5 z-50 px-5 sm:px-8">
-    <div class="max-w-6xl mx-auto ios-glass rounded-full px-6 py-3 flex items-center justify-between gap-4">
+  <header class="sticky top-0 z-50 px-4 sm:px-8 pt-4">
+    <div class="max-w-7xl mx-auto ios-glass rounded-full px-5 sm:px-8 py-3.5 flex items-center justify-between gap-4">
       <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-2.5 group shrink-0">
-        <span class="w-2.5 h-2.5 rounded-full bg-purple-400 shadow-[0_0_12px_#C084FC]"></span>
-        <span class="font-display font-extrabold text-base sm:text-lg tracking-tight text-white">
-          NextDoor<span class="text-purple-luxury">Digital</span>
+      <a href="#" class="flex items-center gap-2.5 group">
+        <span class="w-9 h-9 rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-700 flex items-center justify-center border border-white/40 shadow-lg">
+          <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
         </span>
-        <span class="hidden sm:inline-block text-xs font-mono text-purple-200/70 pl-1">
-          • Ottawa
+        <span class="font-extrabold text-base sm:text-lg tracking-tight text-white">
+          NextDoor <span class="text-purple-300">Digital</span>
         </span>
       </a>
 
-      <!-- Clean Navigation Links -->
-      <nav class="hidden md:flex items-center gap-10 text-sm font-medium text-purple-100/85">
-        <a href="#calculator" class="hover:text-white transition-colors">Calculator</a>
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-9 text-sm font-semibold text-purple-100/85">
+        <a href="#live-demo" class="hover:text-white transition-colors">Live Demo</a>
+        <a href="#savings" class="hover:text-white transition-colors">Savings</a>
         <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
       </nav>
 
-      <!-- Free Preview Pill CTA -->
-      <a href="#free-preview" class="btn-purple-pill text-white font-display font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full whitespace-nowrap">
+      <!-- CTA Button -->
+      <a href="#free-preview" class="btn-glow-purple text-white font-bold text-xs sm:text-sm px-5 sm:px-6 py-2.5 rounded-full whitespace-nowrap">
         Free Preview
       </a>
     </div>
   </header>
 
-  <!-- =========================================================================
-       SPACIOUS HERO + COMPACT, SLEEK iPHONE SIMULATOR
-  ========================================================================== -->
-  <section class="pt-16 pb-28 sm:pt-24 sm:pb-36">
-    <div class="max-w-6xl mx-auto px-6 sm:px-10">
-      <div class="grid lg:grid-cols-12 gap-16 lg:gap-12 items-center">
+  <main class="relative z-10">
 
-        <!-- Left Column: Unclustered Headline, Concise Value Prop & 2 Clean CTAs -->
-        <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
-          <div class="hero-animate inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full ios-glass text-xs font-mono uppercase tracking-widest text-purple-200" style="animation-delay: 0.05s;">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span>Ottawa Local Web Studio</span>
+    <!-- =========================================================================
+         HERO SECTION + COMPACT INTERACTIVE iPHONE SIMULATOR
+    ========================================================================== -->
+    <section class="py-24 sm:py-32">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10">
+        <div class="grid lg:grid-cols-12 gap-14 lg:gap-12 items-center">
+
+          <!-- Left Column: Hero Copy -->
+          <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2.5 ios-glass rounded-full px-4 py-2 text-xs sm:text-sm font-semibold text-purple-200">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Ottawa Local Web Design • Free Preview First</span>
+            </div>
+
+            <h1 class="font-extrabold text-[clamp(2.35rem,4.6vw,4.15rem)] leading-[1.1] tracking-tight text-white">
+              Websites That Turn Ottawa Searches Into <span class="text-gradient-purple">Booked Jobs</span>
+            </h1>
+
+            <p class="text-[clamp(1.05rem,1.25vw,1.22rem)] text-purple-100/85 max-w-2xl mx-auto lg:mx-0 leading-[1.8]">
+              We design a custom, mobile-ready website preview for your business <strong class="text-white">100% free</strong> before you pay a cent. Own it forever for a <strong class="text-white">$99 one-time build</strong>—or add optional <strong class="text-white">$75/mo full care</strong> so you never lift a finger.
+            </p>
+
+            <!-- Hero Buttons -->
+            <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <a href="#free-preview" class="w-full sm:w-auto btn-glow-purple text-white font-bold text-base px-8 py-4 rounded-full text-center flex items-center justify-center gap-2">
+                <span>Get Your Free Preview</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+              <a href="#live-demo" class="w-full sm:w-auto ios-glass ios-glass-hover text-white font-semibold text-base px-8 py-4 rounded-full text-center flex items-center justify-center gap-2">
+                <i data-lucide="smartphone" class="w-4 h-4 text-purple-300"></i>
+                <span>Test Live Demo</span>
+              </a>
+            </div>
           </div>
 
-          <h1 class="hero-animate font-display font-extrabold text-[clamp(2.35rem,4.5vw,3.9rem)] leading-[1.1] tracking-tight text-white" style="animation-delay: 0.12s;">
-            Your 5-Star Reputation Deserves a <span class="text-purple-luxury">Real Website.</span>
-          </h1>
+          <!-- Right Column: Compact Interactive iPhone Simulator ("Live Demo") -->
+          <div id="live-demo" class="lg:col-span-5 flex flex-col items-center space-y-5 scroll-mt-28">
 
-          <p class="hero-animate text-[clamp(1.05rem,1.2vw,1.2rem)] text-purple-100/80 max-w-xl mx-auto lg:mx-0 leading-[1.8]" style="animation-delay: 0.2s;">
-            We build sleek, mobile-ready one-page websites for Ottawa service businesses. See a <strong class="text-white font-semibold">free custom preview first</strong>—pay <strong class="text-white font-semibold">$99 once</strong> only if you love it, with zero monthly fees.
-          </p>
-
-          <!-- Two Clean Action Buttons -->
-          <div class="hero-animate pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4" style="animation-delay: 0.28s;">
-            <a href="#free-preview" class="w-full sm:w-auto btn-purple-pill text-white font-display font-bold text-sm sm:text-base px-8 py-4 rounded-full text-center">
-              Get Your Free Preview →
-            </a>
-            <a href="#calculator" class="w-full sm:w-auto ios-glass ios-glass-hover text-white font-display font-semibold text-sm sm:text-base px-8 py-4 rounded-full text-center">
-              Calculate Savings
-            </a>
-          </div>
-        </div>
-
-        <!-- Right Column: Compact, Well-Proportioned Interactive iPhone Mockup -->
-        <div class="lg:col-span-5 flex flex-col items-center hero-animate" style="animation-delay: 0.24s;">
-
-          <!-- Slim Interactive Control Pill Above Phone -->
-          <div class="w-full max-w-[330px] ios-glass rounded-2xl p-3 mb-4 space-y-2.5">
-            <input
-              type="text"
-              id="liveBizInput"
-              maxlength="34"
-              placeholder="Type your business name..."
-              aria-label="Type your business name to preview on iPhone"
-              class="w-full bg-white/10 border border-white/20 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white placeholder-purple-200/50 focus:outline-none focus:border-purple-300 transition-all"
-            />
-            <div class="flex items-center justify-between gap-1.5">
-              <div class="flex gap-1 overflow-x-auto" role="tablist">
-                <button type="button" data-preset="detailing" class="preset-tab active px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-white/20 text-white border border-white/30 transition-all">
-                  Detailing
+            <!-- Compact Simulator Control Bar -->
+            <div class="w-full max-w-[380px] ios-glass rounded-3xl p-4 space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-purple-200 flex items-center gap-1.5">
+                  <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-fuchsia-300"></i>
+                  Live Phone Simulator
+                </span>
+                <!-- Dark / Light Screen Toggle -->
+                <button
+                  type="button"
+                  id="phoneThemeToggle"
+                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 border border-white/25 text-xs font-semibold text-white transition-all"
+                >
+                  <i data-lucide="sun-moon" class="w-3.5 h-3.5 text-amber-300"></i>
+                  <span id="phoneThemeLabel">Purple Dark</span>
                 </button>
-                <button type="button" data-preset="cleaning" class="preset-tab px-2.5 py-1 rounded-lg text-[11px] font-semibold text-purple-200/80 hover:text-white transition-all">
-                  Cleaning
+              </div>
+
+              <!-- Custom Business Name Input -->
+              <input
+                type="text"
+                id="simBusinessInput"
+                maxlength="28"
+                placeholder="Type your business name..."
+                class="w-full bg-white/10 border border-white/25 rounded-xl px-3.5 py-2 text-sm text-white placeholder-purple-200/55 focus:outline-none focus:border-fuchsia-400"
+              />
+
+              <!-- Trade Preset Pills -->
+              <div class="grid grid-cols-2 gap-2" id="tradePresetButtons">
+                <button type="button" data-trade="detailing" class="trade-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-purple-500/45 border border-purple-300/60 text-white transition-all">
+                  Auto Detailing
                 </button>
-                <button type="button" data-preset="handyman" class="preset-tab px-2.5 py-1 rounded-lg text-[11px] font-semibold text-purple-200/80 hover:text-white transition-all">
+                <button type="button" data-trade="cleaning" class="trade-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 border border-white/15 text-purple-100/85 hover:bg-white/20 transition-all">
+                  House Cleaning
+                </button>
+                <button type="button" data-trade="handyman" class="trade-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 border border-white/15 text-purple-100/85 hover:bg-white/20 transition-all">
                   Handyman
                 </button>
-                <button type="button" data-preset="landscaping" class="preset-tab px-2.5 py-1 rounded-lg text-[11px] font-semibold text-purple-200/80 hover:text-white transition-all">
-                  Lawn
+                <button type="button" data-trade="landscaping" class="trade-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 border border-white/15 text-purple-100/85 hover:bg-white/20 transition-all">
+                  Landscaping
                 </button>
               </div>
-              <!-- Compact Dark/Light Screen Switch -->
-              <button type="button" id="themeToggleBtn" title="Switch Phone Theme" class="shrink-0 px-2.5 py-1 rounded-lg bg-purple-600/60 border border-white/25 text-[11px] font-mono text-white hover:bg-purple-600 transition-all">
-                ☀/☾
-              </button>
             </div>
-          </div>
 
-          <!-- Compact, Shorter iPhone Frame (max-w-[330px], tight internal proportions) -->
-          <div class="relative w-full max-w-[330px] rounded-[44px] p-[10px] bg-gradient-to-b from-purple-200/45 via-purple-400/20 to-purple-950/60 border border-white/35 shadow-[0_28px_70px_-12px_rgba(124,58,237,0.5)] animate-float-gentle">
-            <!-- Screen Container -->
-            <div id="iphoneScreen" class="relative rounded-[35px] overflow-hidden bg-[#110624] text-white border border-white/20 pt-9 pb-4 px-4 space-y-2.5 transition-colors duration-300">
-              <!-- Ambient Refraction Orbs Inside Phone -->
-              <div class="absolute -top-8 -left-8 w-36 h-36 rounded-full bg-purple-500/45 blur-2xl pointer-events-none"></div>
-              <div class="absolute bottom-0 -right-8 w-40 h-40 rounded-full bg-indigo-500/45 blur-2xl pointer-events-none"></div>
+            <!-- Proportional Sleek iPhone Mockup (max-w-[320px]) -->
+            <div class="w-full max-w-[320px] rounded-[46px] p-3 ios-glass shadow-[0_30px_70px_rgba(0,0,0,0.65)]">
+              <div
+                id="phoneScreen"
+                class="rounded-[36px] overflow-hidden border border-white/20 transition-colors duration-300 bg-gradient-to-b from-[#1b0b38] via-[#130829] to-[#0b0518] text-white"
+              >
+                <!-- Dynamic Island + Status Bar -->
+                <div class="px-5 pt-3 pb-2 flex items-center justify-between text-[11px] font-bold opacity-85">
+                  <span>9:41</span>
+                  <div class="w-24 h-5 bg-black rounded-full border border-white/15 flex items-center justify-end px-2">
+                    <span class="w-2 h-2 rounded-full bg-purple-500/80"></span>
+                  </div>
+                  <span class="flex items-center gap-1">
+                    <i data-lucide="wifi" class="w-3 h-3"></i>
+                    <i data-lucide="battery-full" class="w-3.5 h-3.5"></i>
+                  </span>
+                </div>
 
-              <!-- Dynamic Island -->
-              <div class="absolute top-2.5 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-full z-20 flex items-center justify-between px-2.5 border border-white/15">
-                <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
-                <span class="text-[9px] font-mono text-purple-200 tracking-wider">PREVIEW</span>
+                <!-- Simulated Client Website Body -->
+                <div class="px-5 pt-3 pb-6 space-y-4">
+                  <!-- Mini Site Header -->
+                  <div class="flex items-center justify-between">
+                    <span id="simBizTitle" class="font-extrabold text-sm tracking-tight">
+                      Capital Shine Detailing
+                    </span>
+                    <span id="simBadge" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-purple-500/30 border border-purple-300/40 text-purple-200">
+                      Ottawa, ON
+                    </span>
+                  </div>
+
+                  <!-- Simulated Hero Card -->
+                  <div id="simHeroCard" class="rounded-2xl p-4 bg-white/10 border border-white/20 space-y-2.5">
+                    <div class="flex items-center gap-1 text-amber-400 text-xs font-bold">
+                      <span>★★★★★</span>
+                      <span id="simReviewCount" class="opacity-85 ml-1">4.9 (84 Google Reviews)</span>
+                    </div>
+                    <h3 id="simHeadline" class="font-extrabold text-base leading-snug">
+                      Mobile Interior &amp; Exterior Detailing at Your Driveway
+                    </h3>
+                    <p id="simSubtext" class="text-xs opacity-80 leading-relaxed">
+                      Serving Kanata, Barrhaven, Orleans &amp; Downtown Ottawa. Same-week bookings available.
+                    </p>
+                  </div>
+
+                  <!-- Simulated Service Pills -->
+                  <div id="simServicesList" class="grid grid-cols-2 gap-2 text-[11px] font-semibold">
+                    <div class="sim-pill rounded-xl px-3 py-2 bg-white/10 border border-white/15">
+                      ✓ Full Interior Reset
+                    </div>
+                    <div class="sim-pill rounded-xl px-3 py-2 bg-white/10 border border-white/15">
+                      ✓ Ceramic Sealant
+                    </div>
+                  </div>
+
+                  <!-- Simulated Click-to-Call & Quote CTA -->
+                  <div class="pt-1 space-y-2">
+                    <div class="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white font-bold text-xs text-center shadow-lg">
+                      Get Instant Quote • (613) 555-0194
+                    </div>
+                    <p class="text-[10px] text-center opacity-65">
+                      Live Mobile Preview by NextDoor Digital
+                    </p>
+                  </div>
+                </div>
               </div>
+            </div>
 
-              <!-- Compact Safari URL Bar -->
-              <div class="iphone-widget iphone-widget-dark relative z-10 rounded-full px-3 py-1.5 flex items-center justify-between text-[11px] font-mono">
-                <span class="flex items-center gap-1.5 truncate">
-                  <span class="text-emerald-400">🔒</span>
-                  <span id="mockDomain" class="truncate">davidsdetailing.ca</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         INTERACTIVE AGENCY SAVINGS CALCULATOR
+    ========================================================================== -->
+    <section id="savings" class="py-24 sm:py-32 section-border scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10 space-y-12">
+        <div class="max-w-3xl space-y-4 reveal">
+          <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-purple-300">
+            <i data-lucide="calculator" class="w-4 h-4"></i>
+            Agency Savings Calculator
+          </span>
+          <h2 class="font-extrabold text-[clamp(1.95rem,3.6vw,3rem)] leading-tight text-white">
+            See How Much You Save vs. Monthly Web Agencies
+          </h2>
+          <p class="text-base sm:text-lg text-purple-100/80 leading-relaxed">
+            Most Ottawa agencies lock small businesses into $200–$500/month retainers for a basic site. Drag the sliders below to compare against our $99 one-time launch.
+          </p>
+        </div>
+
+        <div class="ios-glass rounded-[32px] p-8 sm:p-10 space-y-10 reveal">
+          <div class="grid md:grid-cols-2 gap-10">
+            <!-- Slider 1: Typical Agency Monthly Rate ($150 to $500/mo, default $300/mo) -->
+            <div class="space-y-4">
+              <div class="flex items-center justify-between gap-4">
+                <label for="agencyRateSlider" class="text-sm sm:text-base font-semibold text-purple-100">
+                  What typical agencies charge per month
+                </label>
+                <span id="agencyRateOutput" class="font-extrabold text-lg sm:text-xl text-white bg-white/10 border border-white/20 px-4 py-1.5 rounded-full">
+                  $300 / mo
                 </span>
-                <span class="opacity-65 text-[9px]">4.9 ★</span>
-              </div>
-
-              <!-- Main Hero Glass Card Inside Phone -->
-              <div class="iphone-widget iphone-widget-dark relative z-10 rounded-2xl p-4 space-y-2.5">
-                <div class="flex items-center justify-between text-[10px] font-mono">
-                  <span id="mockCityTag" class="px-2 py-0.5 rounded-full bg-purple-500/25 border border-purple-300/30">
-                    Ottawa &amp; Nepean
-                  </span>
-                  <span class="text-amber-400 font-bold">★★★★★</span>
-                </div>
-
-                <h2 id="mockBizName" class="font-display font-extrabold text-lg leading-snug">
-                  David's Auto Detailing
-                </h2>
-
-                <p id="mockTagline" class="text-xs opacity-85 leading-relaxed">
-                  Showroom-grade interior &amp; exterior mobile detailing right in your driveway.
-                </p>
-
-                <div class="pt-0.5 grid grid-cols-2 gap-2">
-                  <span class="text-center py-2 rounded-xl bg-purple-600 text-white font-display font-bold text-xs shadow">
-                    Call Now
-                  </span>
-                  <span class="text-center py-2 rounded-xl bg-white/15 border border-current/20 font-semibold text-xs">
-                    Free Quote
-                  </span>
-                </div>
-              </div>
-
-              <!-- Single Compact Service + Review Strip -->
-              <div id="mockService1" class="iphone-widget iphone-widget-dark relative z-10 rounded-xl px-3.5 py-2.5 flex items-center justify-between text-xs">
-                <span class="font-medium">Full Interior &amp; Exterior</span>
-                <span class="font-mono font-bold text-purple-300">$189</span>
-              </div>
-
-              <div class="iphone-widget iphone-widget-dark relative z-10 rounded-xl px-3.5 py-2.5 text-[11px] italic opacity-90 leading-snug" id="mockReview">
-                "Fantastic job… well priced… my truck looks brand new again."
-              </div>
-
-              <!-- Home Bar -->
-              <div class="relative z-10 pt-0.5 flex justify-center">
-                <div class="w-24 h-1 rounded-full bg-current opacity-35"></div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       3 CLEAN VALUE PILLARS (AIRY, UNCLUTTERED iOS GLASS)
-  ========================================================================== -->
-  <section class="py-28 sm:py-36 section-divider">
-    <div class="max-w-6xl mx-auto px-6 sm:px-10">
-      <div class="grid md:grid-cols-3 gap-8 lg:gap-10">
-        <!-- Pillar 1 -->
-        <div class="ios-glass ios-glass-hover rounded-3xl p-8 sm:p-10 space-y-4 reveal">
-          <div class="text-xs font-mono uppercase tracking-widest text-purple-300">01 / Zero Risk</div>
-          <h3 class="font-display font-bold text-xl sm:text-2xl text-white">Free Preview First</h3>
-          <p class="text-sm sm:text-base text-purple-100/80 leading-[1.75]">
-            We design and build a live sample for your business within 48 hours before you ever spend a dollar.
-          </p>
-        </div>
-
-        <!-- Pillar 2 -->
-        <div class="ios-glass ios-glass-hover rounded-3xl p-8 sm:p-10 space-y-4 reveal" style="transition-delay: 0.1s;">
-          <div class="text-xs font-mono uppercase tracking-widest text-purple-300">02 / Transparent</div>
-          <h3 class="font-display font-bold text-xl sm:text-2xl text-white">$99 Flat, Zero Retainers</h3>
-          <p class="text-sm sm:text-base text-purple-100/80 leading-[1.75]">
-            Pay a single $99 one-time fee only if you love your preview. No recurring monthly agency subscriptions.
-          </p>
-        </div>
-
-        <!-- Pillar 3 -->
-        <div class="ios-glass ios-glass-hover rounded-3xl p-8 sm:p-10 space-y-4 reveal" style="transition-delay: 0.2s;">
-          <div class="text-xs font-mono uppercase tracking-widest text-purple-300">03 / Conversion-Ready</div>
-          <h3 class="font-display font-bold text-xl sm:text-2xl text-white">Built for Mobile &amp; Google</h3>
-          <p class="text-sm sm:text-base text-purple-100/80 leading-[1.75]">
-            Engineered to showcase your 5-star Google reviews and turn local Ottawa searches into instant calls.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       INTERACTIVE SLIDING SAVINGS CALCULATOR + $99 FLAT PRICING SPLIT
-  ========================================================================== -->
-  <section id="calculator" class="py-28 sm:py-36 section-divider">
-    <div class="max-w-6xl mx-auto px-6 sm:px-10 space-y-16">
-      <div class="max-w-2xl space-y-4 reveal">
-        <span class="text-xs font-mono uppercase tracking-widest text-purple-300">
-          Interactive Savings &amp; Pricing
-        </span>
-        <h2 class="font-display font-extrabold text-[clamp(1.9rem,3.5vw,2.85rem)] leading-tight text-white">
-          Stop Paying Monthly Rent for a Simple Website.
-        </h2>
-      </div>
-
-      <div id="pricing" class="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-        <!-- Left 7 Cols: Interactive Sliding Calculator -->
-        <div class="lg:col-span-7 ios-glass rounded-[32px] p-8 sm:p-10 flex flex-col justify-between space-y-8 reveal">
-          <div class="space-y-6">
-            <div class="flex items-center justify-between">
-              <span class="text-sm font-mono uppercase tracking-wider text-purple-200">Agency Comparison Slider</span>
-              <span class="text-xs font-mono text-purple-300">Drag to calculate</span>
-            </div>
-
-            <!-- Slider 1: Traditional Agency Monthly Fee ($50 - $250/mo) -->
-            <div class="space-y-3">
-              <div class="flex justify-between text-sm sm:text-base">
-                <span class="text-purple-100/85">Typical Agency Monthly Fee</span>
-                <span id="monthlyRateLabel" class="font-mono font-bold text-white">$150 / mo</span>
               </div>
               <input
                 type="range"
-                id="monthlySlider"
-                min="50"
-                max="250"
-                step="10"
-                value="150"
+                id="agencyRateSlider"
+                min="150"
+                max="500"
+                step="25"
+                value="300"
                 class="purple-slider w-full"
               />
+              <div class="flex justify-between text-xs text-purple-200/70 font-medium">
+                <span>$150/mo</span>
+                <span>$300/mo</span>
+                <span>$500/mo</span>
+              </div>
             </div>
 
-            <!-- Slider 2: Timeframe (1 - 5 Years) -->
-            <div class="space-y-3">
-              <div class="flex justify-between text-sm sm:text-base">
-                <span class="text-purple-100/85">Timeframe</span>
-                <span id="yearsLabel" class="font-mono font-bold text-white">3 Years (36 mos)</span>
+            <!-- Slider 2: Timeframe (1 to 5 years, default 3 years) -->
+            <div class="space-y-4">
+              <div class="flex items-center justify-between gap-4">
+                <label for="timeframeSlider" class="text-sm sm:text-base font-semibold text-purple-100">
+                  Timeframe
+                </label>
+                <span id="timeframeOutput" class="font-extrabold text-lg sm:text-xl text-white bg-white/10 border border-white/20 px-4 py-1.5 rounded-full">
+                  3 Years (36 mos)
+                </span>
               </div>
               <input
                 type="range"
-                id="yearsSlider"
+                id="timeframeSlider"
                 min="1"
                 max="5"
                 step="1"
                 value="3"
                 class="purple-slider w-full"
               />
-            </div>
-          </div>
-
-          <!-- Live Savings Output Display -->
-          <div class="pt-6 border-t border-white/15 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div>
-              <div class="text-xs font-mono uppercase tracking-wider text-purple-200/75">
-                Traditional Agency Cost: <span id="agencyTotalDisplay" class="line-through text-purple-300">$5,400</span>
-              </div>
-              <div class="text-sm text-purple-100/85 mt-1">
-                Total Money You Keep:
+              <div class="flex justify-between text-xs text-purple-200/70 font-medium">
+                <span>1 Year</span>
+                <span>3 Years</span>
+                <span>5 Years</span>
               </div>
             </div>
-            <div id="savingsTotalDisplay" class="font-display font-extrabold text-4xl sm:text-5xl text-purple-luxury">
-              $5,301
-            </div>
-          </div>
-        </div>
-
-        <!-- Right 5 Cols: Clean $99 One-Time Offer Card -->
-        <div class="lg:col-span-5 ios-glass rounded-[32px] p-8 sm:p-10 border-t-2 border-white/45 flex flex-col justify-between space-y-8 reveal" style="transition-delay: 0.1s;">
-          <div class="space-y-5">
-            <span class="inline-block px-3.5 py-1 rounded-full bg-purple-500/25 border border-purple-300/35 text-xs font-mono uppercase tracking-wider text-purple-200">
-              All-Inclusive Package
-            </span>
-
-            <div class="flex items-baseline gap-2.5">
-              <span class="font-display font-extrabold text-5xl sm:text-6xl text-white">$99</span>
-              <span class="text-sm font-mono text-purple-200">CAD one-time</span>
-            </div>
-
-            <ul class="space-y-3 text-sm sm:text-base text-purple-100/90 pt-2">
-              <li class="flex items-center gap-3">
-                <span class="text-emerald-400 font-bold">✓</span>
-                <span>Custom single-page mobile design</span>
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="text-emerald-400 font-bold">✓</span>
-                <span>5-star Google reviews integration</span>
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="text-emerald-400 font-bold">✓</span>
-                <span>One-tap call &amp; instant quote form</span>
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="text-emerald-400 font-bold">✓</span>
-                <span>48-hour free preview before paying</span>
-              </li>
-            </ul>
           </div>
 
-          <a href="#free-preview" class="w-full btn-purple-pill text-white font-display font-bold text-sm sm:text-base py-4 rounded-full text-center">
-            Claim Your Free Preview →
-          </a>
+          <!-- Savings Breakdown Output Cards -->
+          <div class="pt-8 border-t border-white/15 grid sm:grid-cols-3 gap-6 items-center">
+            <div class="rounded-2xl bg-white/5 border border-white/15 p-6 space-y-1">
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-200/75">
+                1-Year Savings vs. $99
+              </span>
+              <div id="oneYearSavingsOutput" class="font-extrabold text-2xl sm:text-3xl text-white">
+                $3,501
+              </div>
+              <p class="text-xs text-purple-200/70">
+                Competitor 1-yr cost: <span id="oneYearCompetitorOutput" class="line-through">$3,600</span>
+              </p>
+            </div>
+
+            <div class="rounded-2xl bg-white/5 border border-white/15 p-6 space-y-1">
+              <span id="multiYearLabelOutput" class="text-xs font-bold uppercase tracking-wider text-purple-200/75">
+                3-Year Competitor Total
+              </span>
+              <div id="multiYearCompetitorOutput" class="font-extrabold text-2xl sm:text-3xl text-rose-300 line-through">
+                $10,800
+              </div>
+              <p class="text-xs text-purple-200/70">
+                vs. NextDoor Digital: <strong class="text-white">$99 once</strong>
+              </p>
+            </div>
+
+            <div class="rounded-2xl bg-gradient-to-br from-purple-500/25 to-fuchsia-500/25 border border-fuchsia-300/40 p-6 space-y-1">
+              <span id="totalSavingsLabelOutput" class="text-xs font-bold uppercase tracking-wider text-fuchsia-200">
+                Total 3-Year Savings
+              </span>
+              <div id="multiYearSavingsOutput" class="font-extrabold text-3xl sm:text-4xl text-gradient-purple">
+                $10,701
+              </div>
+              <p class="text-xs text-purple-100/85">
+                Money that stays in your business
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- =========================================================================
-       CLEAN FORMSPREE LEAD CAPTURE FORM
-  ========================================================================== -->
-  <section id="free-preview" class="py-28 sm:py-36 section-divider">
-    <div class="max-w-3xl mx-auto px-6 sm:px-10 reveal">
-      <div class="ios-glass rounded-[36px] p-8 sm:p-12 lg:p-14 space-y-10">
-        <div class="text-center space-y-3">
-          <span class="text-xs font-mono uppercase tracking-widest text-purple-300">
-            $0 Due Today • Ready in 48 Hours
+    <!-- =========================================================================
+         DUAL PRICING SECTION ($99 ONE-TIME + OPTIONAL $75/MO CARE)
+    ========================================================================== -->
+    <section id="pricing" class="py-24 sm:py-32 section-border scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10 space-y-14">
+        <div class="max-w-3xl space-y-4 reveal">
+          <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-purple-300">
+            <i data-lucide="badge-dollar-sign" class="w-4 h-4"></i>
+            Simple, Honest Pricing
           </span>
-          <h2 class="font-display font-extrabold text-[clamp(1.85rem,3.4vw,2.75rem)] leading-tight text-white">
-            Request Your Free Preview
+          <h2 class="font-extrabold text-[clamp(1.95rem,3.6vw,3rem)] leading-tight text-white">
+            Own Your Site for $99 — Or Add Hands-Free Care
           </h2>
-          <p class="text-sm sm:text-base text-purple-100/80 max-w-lg mx-auto">
-            Tell us your business name and where to send your preview link. No commitment required.
+          <p class="text-base sm:text-lg text-purple-100/80 leading-relaxed">
+            Every project starts with a free live preview built specifically for your Ottawa business. Only pay after you see it and approve.
           </p>
         </div>
 
-        <!-- =====================================================================
-             FORMSPREE FORM INTEGRATION (Keep your Formspree ID in `action`)
-        ====================================================================== -->
-        <form
-          id="contactForm"
-          action="https://formspree.io/f/YOUR_FORMSPREE_ID"
-          method="POST"
-          class="space-y-6"
-        >
-          <div class="grid sm:grid-cols-2 gap-6">
-            <div class="space-y-2">
-              <label for="business_name" class="block text-xs font-mono uppercase tracking-wider text-purple-200">
-                Business Name *
-              </label>
-              <input
-                type="text"
-                id="business_name"
-                name="business_name"
-                required
-                placeholder="e.g. David's Auto Detailing"
-                class="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-4 text-base text-white placeholder-purple-200/45 focus:outline-none focus:border-purple-300 focus:bg-white/15 transition-all"
-              />
+        <div class="grid md:grid-cols-2 gap-8 lg:gap-10 items-stretch">
+
+          <!-- Card 1 (Highlighted): $99 One-Time Launch -->
+          <div class="ios-glass ios-glass-hover rounded-[32px] p-8 sm:p-10 border-2 border-fuchsia-400/60 shadow-[0_0_55px_rgba(192,38,211,0.28)] flex flex-col justify-between space-y-8 reveal">
+            <div class="space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="px-3.5 py-1 rounded-full bg-fuchsia-500/30 border border-fuchsia-300/50 text-xs font-bold uppercase tracking-wider text-white">
+                  Most Popular
+                </span>
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-300">
+                  Zero Monthly Fees
+                </span>
+              </div>
+
+              <div class="space-y-2">
+                <h3 class="font-extrabold text-2xl sm:text-3xl text-white">
+                  $99 One-Time Launch
+                </h3>
+                <p class="text-sm sm:text-base text-purple-100/85 leading-relaxed">
+                  Pay once, own it forever. Zero mandatory monthly fees.
+                </p>
+              </div>
+
+              <div class="flex items-baseline gap-2 pt-1">
+                <span class="font-extrabold text-5xl sm:text-6xl text-white">$99</span>
+                <span class="text-sm font-semibold text-purple-200">CAD one-time</span>
+              </div>
+
+              <ul class="space-y-4 pt-2 text-sm sm:text-base text-purple-50">
+                <li class="flex items-start gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+                  <span>Custom 1-page mobile site</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+                  <span>Click-to-call &amp; quote form</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+                  <span>Google Maps &amp; 5-star review showcase</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+                  <span>Fast free hosting setup</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+                  <span>48-hour free preview first</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+                  <span>100% yours forever</span>
+                </li>
+              </ul>
+            </div>
+
+            <button
+              type="button"
+              data-plan="$99 One-Time Launch"
+              class="choose-plan-btn w-full btn-glow-purple text-white font-bold text-base py-4 px-6 rounded-full text-center"
+            >
+              Choose $99 One-Time
+            </button>
+          </div>
+
+          <!-- Card 2: $75 / Month Optional Care Plan -->
+          <div class="ios-glass ios-glass-hover rounded-[32px] p-8 sm:p-10 flex flex-col justify-between space-y-8 reveal" style="transition-delay: 0.1s;">
+            <div class="space-y-6">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="px-3.5 py-1 rounded-full bg-white/10 border border-white/25 text-xs font-bold uppercase tracking-wider text-purple-200">
+                  All-In Care Plan
+                </span>
+                <span class="text-xs font-semibold text-purple-200/80">
+                  100% Optional
+                </span>
+              </div>
+
+              <div class="space-y-2">
+                <h3 class="font-extrabold text-2xl sm:text-3xl text-white">
+                  $75 / Month
+                </h3>
+                <p class="text-sm sm:text-base text-purple-100/85 leading-relaxed">
+                  Optional All-In Care Plan (Never Required).
+                </p>
+              </div>
+
+              <div class="flex items-baseline gap-2 pt-1">
+                <span class="font-extrabold text-5xl sm:text-6xl text-gradient-purple">$75</span>
+                <span class="text-sm font-semibold text-purple-200">CAD / month</span>
+              </div>
+
+              <ul class="space-y-4 pt-2 text-sm sm:text-base text-purple-50">
+                <li class="flex items-start gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-300 shrink-0 mt-0.5"></i>
+                  <span>Everything in the $99 launch</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-300 shrink-0 mt-0.5"></i>
+                  <span>Custom .ca or .com domain included</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-300 shrink-0 mt-0.5"></i>
+                  <span>Unlimited text &amp; photo updates</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-300 shrink-0 mt-0.5"></i>
+                  <span>Priority same-day Ottawa support</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-300 shrink-0 mt-0.5"></i>
+                  <span>Monthly speed &amp; uptime checks</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-300 shrink-0 mt-0.5"></i>
+                  <span>Cancel anytime with zero lock-in</span>
+                </li>
+              </ul>
+            </div>
+
+            <button
+              type="button"
+              data-plan="$99 Launch + $75/mo Care Plan"
+              class="choose-plan-btn w-full ios-glass hover:bg-white/15 border border-white/35 text-white font-bold text-base py-4 px-6 rounded-full text-center transition-all"
+            >
+              Choose $75/mo Care
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         CONTACT / FREE PREVIEW FORM (FORMSPREE READY)
+    ========================================================================== -->
+    <section id="free-preview" class="py-24 sm:py-32 section-border scroll-mt-24">
+      <div class="max-w-4xl mx-auto px-6 sm:px-10">
+        <div class="ios-glass rounded-[36px] p-8 sm:p-12 space-y-8 reveal">
+          <div class="space-y-3 text-center sm:text-left">
+            <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-fuchsia-300">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              Zero Risk • No Payment Upfront
+            </span>
+            <h2 class="font-extrabold text-[clamp(1.9rem,3.4vw,2.75rem)] leading-tight text-white">
+              Request Your Free Website Preview
+            </h2>
+            <p class="text-base text-purple-100/85 leading-relaxed">
+              Drop your details below and we will send over a custom working preview link within 48 hours.
+            </p>
+          </div>
+
+          <!-- Formspree Integration Form -->
+          <form id="leadForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-6">
+            <div class="grid sm:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label for="businessName" class="block text-xs font-bold uppercase tracking-wider text-purple-200">
+                  Business Name *
+                </label>
+                <input
+                  type="text"
+                  id="businessName"
+                  name="business_name"
+                  required
+                  placeholder="e.g. Ottawa Pro Detailing"
+                  class="w-full bg-white/10 border border-white/25 rounded-2xl px-4 py-3.5 text-base text-white placeholder-purple-200/45 focus:outline-none focus:border-fuchsia-400 focus:bg-white/15 transition-all"
+                />
+              </div>
+
+              <div class="space-y-2">
+                <label for="contactInfo" class="block text-xs font-bold uppercase tracking-wider text-purple-200">
+                  Phone or Email *
+                </label>
+                <input
+                  type="text"
+                  id="contactInfo"
+                  name="contact_info"
+                  required
+                  placeholder="e.g. (613) 555-0148 or you@gmail.com"
+                  class="w-full bg-white/10 border border-white/25 rounded-2xl px-4 py-3.5 text-base text-white placeholder-purple-200/45 focus:outline-none focus:border-fuchsia-400 focus:bg-white/15 transition-all"
+                />
+              </div>
             </div>
 
             <div class="space-y-2">
-              <label for="trade" class="block text-xs font-mono uppercase tracking-wider text-purple-200">
+              <label for="tradeService" class="block text-xs font-bold uppercase tracking-wider text-purple-200">
                 Trade / Service *
               </label>
               <input
                 type="text"
-                id="trade"
-                name="trade"
+                id="tradeService"
+                name="trade_service"
                 required
-                placeholder="e.g. Detailing, Cleaning, Handyman"
-                class="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-4 text-base text-white placeholder-purple-200/45 focus:outline-none focus:border-purple-300 focus:bg-white/15 transition-all"
+                placeholder="e.g. Auto Detailing, House Cleaning, Handyman, Landscaping"
+                class="w-full bg-white/10 border border-white/25 rounded-2xl px-4 py-3.5 text-base text-white placeholder-purple-200/45 focus:outline-none focus:border-fuchsia-400 focus:bg-white/15 transition-all"
               />
             </div>
-          </div>
 
-          <div class="space-y-2">
-            <label for="contact" class="block text-xs font-mono uppercase tracking-wider text-purple-200">
-              Email, Phone, or Instagram *
-            </label>
-            <input
-              type="text"
-              id="contact"
-              name="contact"
-              required
-              placeholder="Where should we send your preview link?"
-              class="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-4 text-base text-white placeholder-purple-200/45 focus:outline-none focus:border-purple-300 focus:bg-white/15 transition-all"
-            />
-          </div>
+            <!-- Plan Radio Selection -->
+            <div class="space-y-3">
+              <span class="block text-xs font-bold uppercase tracking-wider text-purple-200">
+                Preferred Option (Only After You Love Your Free Preview)
+              </span>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <label class="cursor-pointer flex items-center gap-3.5 rounded-2xl bg-white/10 border border-white/25 p-4 hover:border-fuchsia-400/70 transition-all">
+                  <input
+                    type="radio"
+                    name="selected_plan"
+                    value="$99 One-Time Launch"
+                    checked
+                    class="w-4 h-4 accent-fuchsia-500"
+                  />
+                  <div>
+                    <div class="text-sm font-bold text-white">$99 One-Time Launch</div>
+                    <div class="text-xs text-purple-200/75">Pay once, own it forever</div>
+                  </div>
+                </label>
 
-          <input type="hidden" name="_subject" value="New Free Website Preview Request — NextDoor Digital" />
+                <label class="cursor-pointer flex items-center gap-3.5 rounded-2xl bg-white/10 border border-white/25 p-4 hover:border-fuchsia-400/70 transition-all">
+                  <input
+                    type="radio"
+                    name="selected_plan"
+                    value="$99 Launch + $75/mo Care Plan"
+                    class="w-4 h-4 accent-fuchsia-500"
+                  />
+                  <div>
+                    <div class="text-sm font-bold text-white">$99 Launch + $75/mo Care Plan</div>
+                    <div class="text-xs text-purple-200/75">Domain, hosting &amp; unlimited edits</div>
+                  </div>
+                </label>
+              </div>
+            </div>
 
-          <button
-            type="submit"
-            id="submitBtn"
-            class="w-full btn-purple-pill text-white font-display font-bold text-base py-4 rounded-full cursor-pointer"
-          >
-            Build My Free Preview →
-          </button>
+            <input type="hidden" name="_subject" value="New Free Preview Request — NextDoor Digital" />
 
-          <!-- Instant Submission Status Message -->
-          <div id="formStatus" class="hidden rounded-2xl p-4 text-sm text-center font-medium"></div>
-        </form>
+            <button
+              type="submit"
+              id="submitBtn"
+              class="w-full btn-glow-purple text-white font-bold text-base sm:text-lg py-4 px-8 rounded-full flex items-center justify-center gap-2.5"
+            >
+              <span>Send My Free Preview Request</span>
+              <i data-lucide="sparkles" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Inline Confirmation / Error Message Box -->
+            <div id="formFeedback" class="hidden rounded-2xl p-5 text-sm sm:text-base leading-relaxed"></div>
+          </form>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+  </main>
 
   <!-- =========================================================================
-       MINIMAL FOOTER
+       CLEAN FOOTER
   ========================================================================== -->
-  <footer class="section-divider py-12 text-center text-xs sm:text-sm text-purple-200/75">
-    <div class="max-w-6xl mx-auto px-6 sm:px-10">
-      NextDoor Digital • Built in Ottawa, ON
+  <footer class="relative z-10 py-10 section-border">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-purple-200/75">
+      <div class="font-bold text-white">
+        NextDoor Digital <span class="text-purple-300 font-normal">• Built in Ottawa, ON</span>
+      </div>
+      <div>
+        © <span id="currentYear"></span> NextDoor Digital. All rights reserved.
+      </div>
     </div>
   </footer>
 
   <!-- =========================================================================
-       INTERACTIVE SCRIPT (iPHONE SIMULATOR, SAVINGS SLIDERS, REVEALS & FORMSPREE)
+       INTERACTIVE JAVASCRIPT
   ========================================================================== -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Compact iPhone Preview Simulator (Presets + Live Input + Dark/Light Toggle)
-      const presets = {
-        detailing: {
-          name: "David's Auto Detailing",
-          domain: 'davidsdetailing.ca',
-          city: 'Ottawa & Nepean',
-          tagline: 'Showroom-grade interior & exterior mobile detailing right in your driveway.',
-          service: ['Full Interior & Exterior', '$189'],
-          review: '"Fantastic job… well priced… my truck looks brand new again."'
-        },
-        cleaning: {
-          name: 'DECLEAN Cleaning Services',
-          domain: 'decleanottawa.ca',
-          city: 'Ottawa & Kanata',
-          tagline: 'Reliable residential & move-out home cleaning with spotless results.',
-          service: ['Deep Home Refresh', '$165'],
-          review: '"Super thorough, friendly team, and our home has never looked cleaner!"'
-        },
-        handyman: {
-          name: '613 Pro Handyman',
-          domain: '613handyman.ca',
-          city: 'Ottawa & Barrhaven',
-          tagline: 'Fast drywall repairs, TV mounting & home fixes done right the first time.',
-          service: ['Half-Day Repair Visit', '$160'],
-          review: '"Showed up right on time, fair price, and fixed everything cleanly."'
-        },
-        landscaping: {
-          name: 'Capital Lawn & Property',
-          domain: 'capitallawncare.ca',
-          city: 'Ottawa & Orleans',
-          tagline: 'Weekly lawn mowing, spring yard cleanups & hedge trimming across Ottawa.',
-          service: ['Full Seasonal Cleanup', '$195'],
-          review: '"Best looking lawn on our street all summer—highly recommend!"'
-        }
-      };
-
-      let activePreset = 'detailing';
-      let isDarkPhone = true;
-
-      const liveBizInput = document.getElementById('liveBizInput');
-      const mockBizName = document.getElementById('mockBizName');
-      const mockDomain = document.getElementById('mockDomain');
-      const mockCityTag = document.getElementById('mockCityTag');
-      const mockTagline = document.getElementById('mockTagline');
-      const mockService1 = document.getElementById('mockService1');
-      const mockReview = document.getElementById('mockReview');
-
-      function renderPhonePreview(key) {
-        activePreset = key;
-        const data = presets[key];
-        const typedName = liveBizInput ? liveBizInput.value.trim() : '';
-
-        mockBizName.textContent = typedName || data.name;
-        mockDomain.textContent = typedName
-          ? typedName.toLowerCase().replace(/[^a-z0-9]/g, '') + '.ca'
-          : data.domain;
-        mockCityTag.textContent = data.city;
-        mockTagline.textContent = data.tagline;
-        mockService1.innerHTML = `<span class="font-medium">${data.service[0]}</span><span class="font-mono font-bold text-purple-400">${data.service[1]}</span>`;
-        mockReview.textContent = data.review;
+      // Initialize Lucide Icons
+      if (window.lucide) {
+        lucide.createIcons();
       }
 
-      document.querySelectorAll('.preset-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-          document.querySelectorAll('.preset-tab').forEach(t => {
-            t.classList.remove('active', 'bg-white/20', 'text-white', 'border', 'border-white/30');
-            t.classList.add('text-purple-200/80');
+      // Set Current Year in Footer
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+      // -----------------------------------------------------------------------
+      // 1. COMPACT INTERACTIVE iPHONE SIMULATOR
+      // -----------------------------------------------------------------------
+      const tradePresets = {
+        detailing: {
+          defaultName: 'Capital Shine Detailing',
+          reviews: '4.9 (84 Google Reviews)',
+          headline: 'Mobile Interior & Exterior Detailing at Your Driveway',
+          subtext: 'Serving Kanata, Barrhaven, Orleans & Downtown Ottawa. Same-week bookings available.',
+          pills: ['✓ Full Interior Reset', '✓ Ceramic Sealant'],
+        },
+        cleaning: {
+          defaultName: 'Rideau Sparkle Cleaning',
+          reviews: '5.0 (112 Google Reviews)',
+          headline: 'Trusted Ottawa Home & Deep Cleaning Specialists',
+          subtext: 'Eco-friendly supplies, insured local cleaners, and instant flat-rate quotes across Ottawa.',
+          pills: ['✓ Deep Home Clean', '✓ Move-In / Move-Out'],
+        },
+        handyman: {
+          defaultName: '613 Reliable Handyman',
+          reviews: '4.9 (67 Google Reviews)',
+          headline: 'Fast, Clean Home Repairs & Mounting Done Right',
+          subtext: 'Drywall, TV mounting, fixtures & carpentry across Nepean, Glebe & Westboro.',
+          pills: ['✓ Drywall & Paint', '✓ TV & Shelf Mount'],
+        },
+        landscaping: {
+          defaultName: 'ByWard Lawn & Yard Care',
+          reviews: '4.8 (95 Google Reviews)',
+          headline: 'Weekly Lawn Maintenance, Sod & Seasonal Cleanups',
+          subtext: 'Reliable Ottawa crews keeping your curb appeal sharp all spring, summer & fall.',
+          pills: ['✓ Weekly Mowing', '✓ Spring/Fall Cleanup'],
+        },
+      };
+
+      let activeTrade = 'detailing';
+      let isPhoneLightMode = false;
+
+      const simBusinessInput = document.getElementById('simBusinessInput');
+      const simBizTitle = document.getElementById('simBizTitle');
+      const simReviewCount = document.getElementById('simReviewCount');
+      const simHeadline = document.getElementById('simHeadline');
+      const simSubtext = document.getElementById('simSubtext');
+      const simServicesList = document.getElementById('simServicesList');
+      const tradeButtons = document.querySelectorAll('.trade-btn');
+
+      function updateSimulatorContent() {
+        const preset = tradePresets[activeTrade];
+        const customName = simBusinessInput.value.trim();
+        simBizTitle.textContent = customName || preset.defaultName;
+        simReviewCount.textContent = preset.reviews;
+        simHeadline.textContent = preset.headline;
+        simSubtext.textContent = preset.subtext;
+
+        const pillClasses = isPhoneLightMode
+          ? 'rounded-xl px-3 py-2 bg-purple-100/80 border border-purple-200 text-purple-950'
+          : 'rounded-xl px-3 py-2 bg-white/10 border border-white/15 text-white';
+
+        simServicesList.innerHTML = preset.pills
+          .map((pill) => `<div class="${pillClasses}">${pill}</div>`)
+          .join('');
+      }
+
+      simBusinessInput.addEventListener('input', updateSimulatorContent);
+
+      tradeButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeTrade = btn.dataset.trade;
+          tradeButtons.forEach((b) => {
+            b.className = 'trade-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 border border-white/15 text-purple-100/85 hover:bg-white/20 transition-all';
           });
-          tab.classList.add('active', 'bg-white/20', 'text-white', 'border', 'border-white/30');
-          tab.classList.remove('text-purple-200/80');
-          renderPhonePreview(tab.dataset.preset);
+          btn.className = 'trade-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-purple-500/45 border border-purple-300/60 text-white transition-all';
+          updateSimulatorContent();
         });
       });
 
-      if (liveBizInput) {
-        liveBizInput.addEventListener('input', () => {
-          const val = liveBizInput.value.trim();
-          const data = presets[activePreset];
-          mockBizName.textContent = val || data.name;
-          mockDomain.textContent = val
-            ? val.toLowerCase().replace(/[^a-z0-9]/g, '') + '.ca'
-            : data.domain;
+      // Dark / Light Mode Toggle Inside iPhone Screen
+      const phoneThemeToggle = document.getElementById('phoneThemeToggle');
+      const phoneThemeLabel = document.getElementById('phoneThemeLabel');
+      const phoneScreen = document.getElementById('phoneScreen');
+      const simHeroCard = document.getElementById('simHeroCard');
+      const simBadge = document.getElementById('simBadge');
 
-          const formBizInput = document.getElementById('business_name');
-          if (formBizInput) formBizInput.value = val;
-        });
+      phoneThemeToggle.addEventListener('click', () => {
+        isPhoneLightMode = !isPhoneLightMode;
+        if (isPhoneLightMode) {
+          phoneThemeLabel.textContent = 'Crisp Light';
+          phoneScreen.className = 'rounded-[36px] overflow-hidden border border-purple-200 transition-colors duration-300 bg-gradient-to-b from-white via-purple-50 to-purple-100/70 text-slate-900';
+          simHeroCard.className = 'rounded-2xl p-4 bg-white border border-purple-200/80 shadow-sm space-y-2.5';
+          simBadge.className = 'text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-purple-100 border border-purple-300 text-purple-800';
+        } else {
+          phoneThemeLabel.textContent = 'Purple Dark';
+          phoneScreen.className = 'rounded-[36px] overflow-hidden border border-white/20 transition-colors duration-300 bg-gradient-to-b from-[#1b0b38] via-[#130829] to-[#0b0518] text-white';
+          simHeroCard.className = 'rounded-2xl p-4 bg-white/10 border border-white/20 space-y-2.5';
+          simBadge.className = 'text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-purple-500/30 border border-purple-300/40 text-purple-200';
+        }
+        updateSimulatorContent();
+      });
+
+      // -----------------------------------------------------------------------
+      // 2. INTERACTIVE AGENCY SAVINGS CALCULATOR
+      // -----------------------------------------------------------------------
+      const agencyRateSlider = document.getElementById('agencyRateSlider');
+      const timeframeSlider = document.getElementById('timeframeSlider');
+      const agencyRateOutput = document.getElementById('agencyRateOutput');
+      const timeframeOutput = document.getElementById('timeframeOutput');
+      const oneYearSavingsOutput = document.getElementById('oneYearSavingsOutput');
+      const oneYearCompetitorOutput = document.getElementById('oneYearCompetitorOutput');
+      const multiYearLabelOutput = document.getElementById('multiYearLabelOutput');
+      const multiYearCompetitorOutput = document.getElementById('multiYearCompetitorOutput');
+      const totalSavingsLabelOutput = document.getElementById('totalSavingsLabelOutput');
+      const multiYearSavingsOutput = document.getElementById('multiYearSavingsOutput');
+
+      function formatCAD(amount) {
+        return '$' + amount.toLocaleString('en-CA');
       }
 
-      // Dark Purple vs Light Mode Toggle Inside iPhone Screen
-      const themeToggleBtn = document.getElementById('themeToggleBtn');
-      const iphoneScreen = document.getElementById('iphoneScreen');
-
-      if (themeToggleBtn && iphoneScreen) {
-        themeToggleBtn.addEventListener('click', () => {
-          isDarkPhone = !isDarkPhone;
-          if (isDarkPhone) {
-            iphoneScreen.classList.remove('bg-[#F5F3FF]', 'text-[#1E1B4B]');
-            iphoneScreen.classList.add('bg-[#110624]', 'text-white');
-            document.querySelectorAll('.iphone-widget').forEach(w => {
-              w.classList.remove('iphone-widget-light');
-              w.classList.add('iphone-widget-dark');
-            });
-          } else {
-            iphoneScreen.classList.remove('bg-[#110624]', 'text-white');
-            iphoneScreen.classList.add('bg-[#F5F3FF]', 'text-[#1E1B4B]');
-            document.querySelectorAll('.iphone-widget').forEach(w => {
-              w.classList.remove('iphone-widget-dark');
-              w.classList.add('iphone-widget-light');
-            });
-          }
-        });
-      }
-
-      // 2. Interactive Sliding Savings Calculator (Monthly Rate + Years)
-      const monthlySlider = document.getElementById('monthlySlider');
-      const yearsSlider = document.getElementById('yearsSlider');
-      const monthlyRateLabel = document.getElementById('monthlyRateLabel');
-      const yearsLabel = document.getElementById('yearsLabel');
-      const agencyTotalDisplay = document.getElementById('agencyTotalDisplay');
-      const savingsTotalDisplay = document.getElementById('savingsTotalDisplay');
-
-      function updateSavingsCalculator() {
-        const monthlyRate = parseInt(monthlySlider.value, 10);
-        const years = parseInt(yearsSlider.value, 10);
+      function calculateSavings() {
+        const monthlyRate = parseInt(agencyRateSlider.value, 10);
+        const years = parseInt(timeframeSlider.value, 10);
         const months = years * 12;
-        const agencyTotal = monthlyRate * months;
-        const netSavings = Math.max(0, agencyTotal - 99);
 
-        monthlyRateLabel.textContent = `$${monthlyRate} / mo`;
-        yearsLabel.textContent = `${years} Year${years > 1 ? 's' : ''} (${months} mos)`;
-        agencyTotalDisplay.textContent = `$${agencyTotal.toLocaleString()}`;
-        savingsTotalDisplay.textContent = `$${netSavings.toLocaleString()}`;
+        const oneYearAgencyCost = monthlyRate * 12;
+        const oneYearSavings = oneYearAgencyCost - 99;
+
+        const multiYearAgencyCost = monthlyRate * months;
+        const multiYearSavings = multiYearAgencyCost - 99;
+
+        agencyRateOutput.textContent = `${formatCAD(monthlyRate)} / mo`;
+        timeframeOutput.textContent = `${years} ${years === 1 ? 'Year' : 'Years'} (${months} mos)`;
+
+        oneYearCompetitorOutput.textContent = formatCAD(oneYearAgencyCost);
+        oneYearSavingsOutput.textContent = formatCAD(oneYearSavings);
+
+        multiYearLabelOutput.textContent = `${years}-Year Competitor Total`;
+        multiYearCompetitorOutput.textContent = formatCAD(multiYearAgencyCost);
+        totalSavingsLabelOutput.textContent = `Total ${years}-Year Savings`;
+        multiYearSavingsOutput.textContent = formatCAD(multiYearSavings);
       }
 
-      if (monthlySlider && yearsSlider) {
-        monthlySlider.addEventListener('input', updateSavingsCalculator);
-        yearsSlider.addEventListener('input', updateSavingsCalculator);
-      }
+      agencyRateSlider.addEventListener('input', calculateSavings);
+      timeframeSlider.addEventListener('input', calculateSavings);
+      calculateSavings();
 
-      // 3. Smooth Scroll-Reveal Observer
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+      // -----------------------------------------------------------------------
+      // 3. PRICING BUTTONS -> SCROLL TO FORM & SELECT RADIO OPTION
+      // -----------------------------------------------------------------------
+      document.querySelectorAll('.choose-plan-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const planValue = btn.dataset.plan;
+          const radio = document.querySelector(`input[name="selected_plan"][value="${planValue}"]`);
+          if (radio) {
+            radio.checked = true;
+          }
+          const formSection = document.getElementById('free-preview');
+          if (formSection) {
+            formSection.scrollIntoView({ behavior: 'smooth' });
           }
         });
-      }, { threshold: 0.12 });
+      });
 
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-      // 4. Formspree AJAX Submission Handler
-      const contactForm = document.getElementById('contactForm');
-      const formStatus = document.getElementById('formStatus');
-      const submitBtn = document.getElementById('submitBtn');
-
-      if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
-          if (contactForm.action.includes('YOUR_FORMSPREE_ID')) {
-            return; // Falls back to standard Formspree POST if ID hasn't been swapped yet
-          }
-
-          e.preventDefault();
-          const originalText = submitBtn.textContent;
-          submitBtn.disabled = true;
-          submitBtn.textContent = 'Sending...';
-          formStatus.classList.add('hidden');
-
-          try {
-            const response = await fetch(contactForm.action, {
-              method: 'POST',
-              body: new FormData(contactForm),
-              headers: { 'Accept': 'application/json' }
-            });
-
-            if (response.ok) {
-              formStatus.className = 'rounded-2xl p-4 text-sm text-center font-medium bg-emerald-500/20 border border-emerald-400/40 text-emerald-200';
-              formStatus.textContent = 'Request received! We are building your free Ottawa website preview and will send your link within 48 hours.';
-              formStatus.classList.remove('hidden');
-              contactForm.reset();
-            } else {
-              throw new Error('Submission error');
+      // -----------------------------------------------------------------------
+      // 4. SMOOTH SCROLL-REVEAL FADE-UP ANIMATIONS
+      // -----------------------------------------------------------------------
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
             }
-          } catch (err) {
-            formStatus.className = 'rounded-2xl p-4 text-sm text-center font-medium bg-rose-500/20 border border-rose-400/40 text-rose-200';
-            formStatus.textContent = 'Could not submit right now—please check your connection and try again.';
-            formStatus.classList.remove('hidden');
-          } finally {
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+      // -----------------------------------------------------------------------
+      // 5. FORMSPREE AJAX SUBMISSION WITH PLACEHOLDER FALLBACK
+      // -----------------------------------------------------------------------
+      const leadForm = document.getElementById('leadForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const formFeedback = document.getElementById('formFeedback');
+
+      leadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const actionUrl = leadForm.getAttribute('action') || '';
+        const originalBtnHTML = submitBtn.innerHTML;
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Sending Request...</span>';
+        formFeedback.classList.add('hidden');
+
+        // Graceful handling when placeholder ID is still present during preview testing
+        if (actionUrl.includes('YOUR_FORMSPREE_ID')) {
+          setTimeout(() => {
+            formFeedback.className =
+              'rounded-2xl p-5 text-sm sm:text-base leading-relaxed bg-emerald-500/20 border border-emerald-400/40 text-emerald-100';
+            formFeedback.innerHTML =
+              '<strong>Preview Test Confirmed!</strong> Your form works smoothly. Replace <code>YOUR_FORMSPREE_ID</code> in the form action with your real Formspree ID on GitHub to receive live client submissions.';
+            leadForm.reset();
             submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
+            submitBtn.innerHTML = originalBtnHTML;
+          }, 450);
+          return;
+        }
+
+        try {
+          const formData = new FormData(leadForm);
+          const response = await fetch(actionUrl, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              Accept: 'application/json',
+            },
+          });
+
+          if (response.ok) {
+            formFeedback.className =
+              'rounded-2xl p-5 text-sm sm:text-base leading-relaxed bg-emerald-500/20 border border-emerald-400/40 text-emerald-100';
+            formFeedback.innerHTML =
+              '<strong>Request Received!</strong> Thanks for reaching out to NextDoor Digital. We are building your free Ottawa website preview now and will send the link within 48 hours.';
+            leadForm.reset();
+          } else {
+            throw new Error('Submission failed');
           }
-        });
-      }
+        } catch (err) {
+          formFeedback.className =
+            'rounded-2xl p-5 text-sm sm:text-base leading-relaxed bg-rose-500/20 border border-rose-400/40 text-rose-100';
+          formFeedback.innerHTML =
+            '<strong>Something went wrong.</strong> Please double-check your connection and try submitting again.';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHTML;
+        }
+      });
     });
   </script>
 </body>
